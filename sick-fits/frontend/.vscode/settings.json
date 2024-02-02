@@ -10,19 +10,5 @@
     "vue-html": "html",
   },
   "emmet.triggerExpansionOnTab": true,
-  "editor.formatOnSave": true,
-  "[javascript]": {
-    "editor.formatOnSave": false
-  },
-  "[javascriptreact]": {
-    "editor.formatOnSave": false
-  },
   "eslint.alwaysShowStatus": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit"
-  },
-  "prettier.disableLanguages": [
-    "javascript",
-    "javascriptreact"
-  ]
 }
