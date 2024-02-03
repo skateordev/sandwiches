@@ -1,5 +1,12 @@
+import Router from 'next/router';
+import NProgress from 'nprogress';
 import PropTypes from 'prop-types';
 import { Page } from '../components';
+import '../components/styles/nprogress.css';
+
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeError', () => NProgress.done());
+Router.events.on('routeChangeComplete', () => NProgress.done());
 
 export default function App({ Component, pageProps }) {
   return (
