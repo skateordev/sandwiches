@@ -1,8 +1,6 @@
 import Link from 'next/link';
-import Title from './styles/Title';
-import PriceTag from './styles/PriceTag';
-import { ItemStyles as ItemStyled } from './styles/ItemStyles';
 import formatMoney from '../lib/formatMoney';
+import { ItemStyled, TitleStyled, PriceTagStyled } from './styles';
 
 
 export default function Product({
@@ -19,10 +17,10 @@ export default function Product({
   return (
     <ItemStyled>
       <img src={image?.publicUrlTransformed} alt={name} />
-      <Title>
+      <TitleStyled>
         <Link href={`/product/${id}`}>{name}</Link>
-      </Title>
-      <PriceTag>{formatMoney(price)}</PriceTag>
+      </TitleStyled>
+      <PriceTagStyled>{formatMoney(price)}</PriceTagStyled>
       <p>{description}</p>
       {/* Add buttons to edit and delete */}
     </ItemStyled>
