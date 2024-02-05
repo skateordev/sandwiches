@@ -1,6 +1,10 @@
 import 'dotenv/config';
 import { createAuth } from '@keystone-next/auth';
 import { config, createSchema } from '@keystone-next/keystone/schema';
+import {
+  withItemData,
+  statelessSessions,
+} from '@keystone-next/keystone/session';
 import { User } from './schemas/User';
 
 const databaseURL =
@@ -43,8 +47,12 @@ export default withAuth(
     }),
     ui: {
       // TODO: change this for roles
-      isAccessAllowed: () => true,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      isAccessAllowed: ({ session }) => !!session?.data,
     },
     // TODO: add session values here
+    session: withItemData(statelessSessions(sessionConfig), {
+      User: 'id',
+    }),
   })
 );
