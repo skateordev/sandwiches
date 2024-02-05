@@ -1,3 +1,1 @@
-export default function IndexPage() {
-  return null;
-}
+export { default as ProductsPage } from './products';

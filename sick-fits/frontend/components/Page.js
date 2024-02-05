@@ -20,6 +20,8 @@ const GlobalStyles = createGlobalStyle`
   :root {
     --logoFont: 'a_dripping_marker', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --bodyFont: 'radnika_next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    font-size: 16px;
   }
 
   html {
@@ -31,7 +33,7 @@ const GlobalStyles = createGlobalStyle`
     --maxWidth: 1200px;
     --lightGrey: #cdcdcd;
     --lightGray: var(--lightGrey);
-    --boxShadow: 0 12px 12px 0 rgba(0,0,0,0.09);
+    --boxShadow: 0 12px 12px 0 rgba(0,0,0,0.13);
 
     box-sizing: border-box;
   }
@@ -45,7 +47,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-family: var(--bodyFont);
     line-height: 2;
 
