@@ -49,7 +49,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     font-size: 1rem;
     font-family: var(--bodyFont);
-    line-height: 2;
+    line-height: 1.2;
 
     a {
       color: var(--black);
