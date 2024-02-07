@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import formatMoney from '../lib/formatMoney';
-import { ItemStyled, TitleStyled, PriceTagStyled } from './styles';
-
+import formatMoney from '../../lib/formatMoney';
+import { ItemStyled, TitleStyled, PriceTagStyled } from '../styles';
 
 export default function Product({
   product

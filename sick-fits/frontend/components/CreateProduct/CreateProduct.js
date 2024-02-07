@@ -1,38 +1,9 @@
 import gql from "graphql-tag";
-import useForm from "../lib/useForm";
-import { FormStyled, SickButton } from "./styles";
+import useForm from "../../lib/useForm";
+import { FormStyled, SickButton } from "../styles";
 import { useMutation } from "@apollo/client";
-import ErrorMessage from "./ErrorMessage";
-
-const CREATE_PRODUCT_MUTATION = gql`
-  mutation CREATE_PRODUCT_MUTATION(
-    # which variables are getting passed in? and what types are the
-    # ! deliminates a required input
-    $name: String!
-    $image: Upload
-    $price: Int!
-    $description: String!
-  ) {
-    createProduct(
-      data: {
-        name: $name
-        photo: {
-          create: {
-            image: $image
-            altText: $name
-          }
-        }
-        price: $price
-        status: "AVAILABLE"
-        description: $description
-      }
-    ) {
-      id
-      price
-      description
-    }
-  }
-`;
+import ErrorMessage from "../ErrorMessage";
+import { CREATE_PRODUCT_MUTATION } from "./mutations/createProductMutation";
 
 export default function CreateProduct() {
   const initialValues = {

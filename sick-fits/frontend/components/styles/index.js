@@ -12,3 +12,4 @@ export { default as SickButton } from './SickButton';
 export { default as Supreme } from './Supreme';
 export { default as TableStyled } from './Table';
 export { default as TitleStyled } from './Title';
+export { default as GlobalStyles } from './GlobalStyles';
