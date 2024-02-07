@@ -1,23 +1,70 @@
+import gql from "graphql-tag";
 import useForm from "../lib/useForm";
 import { FormStyled, SickButton } from "./styles";
+import { useMutation } from "@apollo/client";
+import ErrorMessage from "./ErrorMessage";
+
+const CREATE_PRODUCT_MUTATION = gql`
+  mutation CREATE_PRODUCT_MUTATION(
+    # which variables are getting passed in? and what types are the
+    # ! deliminates a required input
+    $name: String!
+    $image: Upload
+    $price: Int!
+    $description: String!
+  ) {
+    createProduct(
+      data: {
+        name: $name
+        photo: {
+          create: {
+            image: $image
+            altText: $name
+          }
+        }
+        price: $price
+        status: "AVAILABLE"
+        description: $description
+      }
+    ) {
+      id
+      price
+      description
+    }
+  }
+`;
 
 export default function CreateProduct() {
-  const { inputs, clearForm, resetForm, handleChange } = useForm({
+  const initialValues = {
     name: 'mock name',
     price: 4444,
     image: '',
     description: 'I got somethin to say',
-  });
+  };
+
+  const { inputs, clearForm, resetForm, handleChange } = useForm(initialValues);
 
   const { name, price, description } = inputs;
 
-  const submitNewProductHandler = (evt) => {
+  const [createProduct, { data, error: errorMessage, loading: isLoading }] = useMutation(
+    CREATE_PRODUCT_MUTATION,
+    {
+      variables: inputs
+    }
+  );
+
+  const submitNewProductHandler = async (evt) => {
     evt.preventDefault();
+
+    await createProduct();
+
+    clearForm();
   };
 
   return (
     <FormStyled onSubmit={submitNewProductHandler}>
-      <fieldset>
+      <ErrorMessage error={errorMessage} />
+      <fieldset disabled={isLoading} aria-busy={isLoading}>
         <label htmlFor="image">
           Image
           <input
