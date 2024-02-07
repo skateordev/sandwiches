@@ -9,14 +9,14 @@ export default function Product({
   const {
     id,
     name,
-    photo: { image },
+    photo,
     price,
     description,
   } = product;
 
   return (
     <ItemStyled>
-      <img src={image?.publicUrlTransformed} alt={name} />
+      <img src={photo?.image?.publicUrlTransformed} alt={name} />
       <TitleStyled>
         <Link href={`/product/${id}`}>{name}</Link>
       </TitleStyled>
