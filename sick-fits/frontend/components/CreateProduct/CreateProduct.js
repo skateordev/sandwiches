@@ -4,6 +4,7 @@ import { FormStyled, SickButton } from "../styles";
 import { useMutation } from "@apollo/client";
 import ErrorMessage from "../ErrorMessage";
 import { CREATE_PRODUCT_MUTATION } from "./mutations/createProductMutation";
+import { ALL_PRODUCTS_QUERY } from "../Products/queries/allProductsQuery";
 
 export default function CreateProduct() {
   const initialValues = {
@@ -20,7 +21,8 @@ export default function CreateProduct() {
   const [createProduct, { data, error: errorMessage, loading: isLoading }] = useMutation(
     CREATE_PRODUCT_MUTATION,
     {
-      variables: inputs
+      variables: inputs,
+      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
     }
   );
 
