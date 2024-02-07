@@ -1,6 +1,7 @@
 import gql from "graphql-tag";
 import useForm from "../../lib/useForm";
 import { FormStyled, SickButton } from "../styles";
+import Router from "next/router";
 import { useMutation } from "@apollo/client";
 import ErrorMessage from "../ErrorMessage";
 import { CREATE_PRODUCT_MUTATION } from "./mutations/createProductMutation";
@@ -27,11 +28,19 @@ export default function CreateProduct() {
   );
 
   const submitNewProductHandler = async (evt) => {
+    // prevent passing url params
     evt.preventDefault();
 
-    await createProduct();
+    // wait for input fields to be submitted to backend
+    const res = await createProduct();
 
+    // clear the form for moar productz
     clearForm();
+
+    // go to the newly created product's page
+    Router.push({
+      pathname: `/product/${res.data.createProduct.id}`,
+    })
   };
 
   return (
@@ -74,7 +83,7 @@ export default function CreateProduct() {
           Description
           <textarea
             id="description"
-            name="price"
+            name="description"
             value={description}
             onChange={handleChange}
             placeholder="Descript the product"
