@@ -1,4 +1,3 @@
-import gql from "graphql-tag";
 import useForm from "../../lib/useForm";
 import { FormStyled, SickButton } from "../styles";
 import Router from "next/router";
@@ -33,9 +32,6 @@ export default function CreateProduct() {
 
     // wait for input fields to be submitted to backend
     const res = await createProduct();
-
-    // clear the form for moar productz
-    clearForm();
 
     // go to the newly created product's page
     Router.push({
@@ -76,7 +72,7 @@ export default function CreateProduct() {
             type="number"
             value={price}
             onChange={handleChange}
-            placeholder="4444"
+            placeholder="100"
           />
         </label>
         <label htmlFor="description">
