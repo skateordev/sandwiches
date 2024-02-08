@@ -4,3 +4,5 @@ export { default as Header } from './Header.js';
 export { default as Products } from './Products/Products.js';
 export { default as ErrorMessage } from './ErrorMessage.js';
 export { default as CreateProduct } from './CreateProduct/CreateProduct.js';
+export { default as SingleProduct } from './SingleProduct/SingleProduct.js';
+export { default as UpdateProduct } from './UpdateProduct/UpdateProduct.js';
