@@ -6,3 +6,4 @@ export { default as ErrorMessage } from './ErrorMessage.js';
 export { default as CreateProduct } from './CreateProduct/CreateProduct.js';
 export { default as SingleProduct } from './SingleProduct/SingleProduct.js';
 export { default as UpdateProduct } from './UpdateProduct/UpdateProduct.js';
+export { default as DeleteProduct } from './DeleteProduct/DeleteProduct.js';
