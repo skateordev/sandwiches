@@ -13,6 +13,7 @@ export const UPDATE_PRODUCT_MUTATION = gql`
       data: {
         name: $name
         price: $price
+        # TODO: add support for updating product photos
         # photo: {
         #   create: {
         #     image: $image
