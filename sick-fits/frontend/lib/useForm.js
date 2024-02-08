@@ -1,8 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function useForm(initial = {}) {
-  // create a state object for inputs
   const [inputs, setInputs] = useState(initial);
+
+  // fix values of `initial` being undefined
+  const initialValues = Object.values(initial).join('');
+
+  useEffect(() => {
+    // initialValues will be undefined on first render
+    // update inputs to the actual values once initialValues changes
+    setInputs(initial);
+  }, [initialValues]);
 
   function handleChange(evt) {
     let { name, type, files, value } = evt.target;
