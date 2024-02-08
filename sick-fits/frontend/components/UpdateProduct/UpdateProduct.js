@@ -1,13 +1,25 @@
-import useForm from "../../lib/useForm";
-import { FormStyled, SickButton } from "../styles";
-import Router from "next/router";
-import { useMutation, useQuery } from "@apollo/client";
-import ErrorMessage from "../ErrorMessage";
-import { UPDATE_PRODUCT_MUTATION } from "./mutations/updateProductMutation";
-import { ALL_PRODUCTS_QUERY } from "../Products/queries/allProductsQuery";
-import { SINGLE_ITEM_QUERY } from "../SingleProduct/queries/singleProductQuery";
+import { useState } from 'react';
+import Router from 'next/router';
+import { useMutation, useQuery } from '@apollo/client';
+import styled from 'styled-components';
+import useForm from '../../lib/useForm';
+import { FormStyled, SickButton } from '../styles';
+import ErrorMessage from '../ErrorMessage';
+import { UPDATE_PRODUCT_MUTATION } from './mutations/updateProductMutation';
+import { ALL_PRODUCTS_QUERY } from '../Products/queries/allProductsQuery';
+import { SINGLE_ITEM_QUERY } from '../SingleProduct/queries/singleProductQuery';
+import DeleteProduct from '../DeleteProduct/DeleteProduct';
+
+const ActionBar = styled.div`
+  display: grid;
+  gap: .5rem;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+`;
 
 export default function UpdateProduct({ id }) {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
   // get the existing product
   const {
     data: queryData,
@@ -20,7 +32,7 @@ export default function UpdateProduct({ id }) {
   });
 
   // create some state for the form inputs:
-  const { inputs, clearForm, resetForm, handleChange } = useForm(queryData?.Product);
+  const { inputs, handleChange } = useForm(queryData?.Product);
 
   const { name, price, description } = inputs;
 
@@ -53,57 +65,66 @@ export default function UpdateProduct({ id }) {
     })
   };
 
+  const errorMessage = queryError || updateError;
+  const isLoading = isQueryLoading || isUpdateLoading;
+
   if (isQueryLoading) return <div>Loading...💦</div>
 
   return (
-    <FormStyled onSubmit={updateProductHandler}>
-      <ErrorMessage error={queryError || updateError} />
-      <fieldset disabled={isQueryLoading || isUpdateLoading} aria-busy={isQueryLoading || isUpdateLoading}>
-        {/* <label htmlFor="image">
-          Image
-          <input
-            id="image"
-            name="image"
-            type="file"
-            onChange={handleChange}
-            required
-          />
-        </label> */}
-        <label htmlFor="name">
-          Name
-          <input
-            id="name"
-            name="name"
-            type="text"
-            value={name}
-            onChange={handleChange}
-            placeholder="name"
-          />
-        </label>
-        <label htmlFor="price">
-          Price
-          <input
-            id="price"
-            name="price"
-            type="number"
-            value={price}
-            onChange={handleChange}
-            placeholder="price in cents"
-          />
-        </label>
-        <label htmlFor="description">
-          Description
-          <textarea
-            id="description"
-            name="description"
-            value={description}
-            onChange={handleChange}
-            placeholder="Descript the product"
-          />
-        </label>
-      </fieldset>
+    <>
+      <FormStyled onSubmit={updateProductHandler}>
+        <ErrorMessage error={errorMessage} />
+        <fieldset disabled={isLoading} aria-busy={isLoading}>
+          {/* <label htmlFor='image'>
+            Image
+            <input
+              id="image"
+              name="image"
+              type="file"
+              onChange={handleChange}
+              required
+            />
+          </label> */}
+          <label htmlFor="name">
+            Name
+            <input
+              id="name"
+              name="name"
+              type="text"
+              value={name}
+              onChange={handleChange}
+              placeholder="name"
+            />
+          </label>
+          <label htmlFor="price">
+            Price
+            <input
+              id="price"
+              name="price"
+              type="number"
+              value={price}
+              onChange={handleChange}
+              placeholder="100"
+            />
+          </label>
+          <label htmlFor="description">
+            Description
+            <textarea
+              id="description"
+              name="description"
+              value={description}
+              onChange={handleChange}
+              placeholder="Descript the product"
+            />
+          </label>
+        </fieldset>
 
-      <SickButton type="submit">Update Product</SickButton>
-    </FormStyled>
+        <ActionBar>
+          <SickButton type="submit">Update Product ✨</SickButton>
+          <SickButton type="button" onClick={() => setIsDeleteModalOpen(true)}>Delete Product 💀</SickButton>
+        </ActionBar>
+      </FormStyled>
+      {isDeleteModalOpen && <DeleteProduct id={id} isModalOpen={isDeleteModalOpen} cancelDelete={() => setIsDeleteModalOpen(false)} />}
+    </>
   )
 };
