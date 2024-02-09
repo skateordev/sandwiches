@@ -91,7 +91,7 @@ export default function UpdateProduct({ id }) {
               id="name"
               name="name"
               type="text"
-              value={name}
+              value={name ?? ''}
               onChange={handleChange}
               placeholder="name"
             />
@@ -102,7 +102,7 @@ export default function UpdateProduct({ id }) {
               id="price"
               name="price"
               type="number"
-              value={price}
+              value={price ?? ''}
               onChange={handleChange}
               placeholder="100"
             />
@@ -112,7 +112,7 @@ export default function UpdateProduct({ id }) {
             <textarea
               id="description"
               name="description"
-              value={description}
+              value={description ?? ''}
               onChange={handleChange}
               placeholder="Descript the product"
             />
