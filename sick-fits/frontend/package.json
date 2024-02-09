@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start -p 7777",
     "test": "NODE_ENV=test jest --watch",
-    "reset": "rimraf node_modules/ && npm i"
+    "reset": "rimraf node_modules/ && rimraf .next/ && npm i"
   },
   "author": "",
   "license": "ISC",
