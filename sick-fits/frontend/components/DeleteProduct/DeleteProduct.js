@@ -36,12 +36,17 @@ export default function DeleteProduct({ id, isModalOpen, cancelDelete }) {
     };
   }, []);
 
+  // this will update the product listing without having to refetch/requery all products!
+  function updateCache(cache, payload) {
+    cache.evict(cache.identify(payload.data.deleteProduct));
+  }
+
   // send deleteProductMutation
   const [deleteProduct, { error: deletionError, loading: isDeleteLoading }] = useMutation(
     DELETE_PRODUCT_MUTATION,
     {
+      update: updateCache,
       variables: { id },
-      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
     }
   );
 
