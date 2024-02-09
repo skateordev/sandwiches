@@ -1,8 +1,8 @@
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import PropTypes from 'prop-types';
-import { Page } from '../components';
 import { ApolloProvider } from '@apollo/client';
+import { Page } from '../components';
 import withData from '../lib/withData';
 import '../components/styles/nprogress.css';
 
@@ -21,7 +21,7 @@ function App({ Component, pageProps, apollo }) {
   );
 }
 
-App.getInitialProps = async function({ Component, ctx }) {
+App.getInitialProps = async function getInitialPageProps({ Component, ctx }) {
   let pageProps = {};
 
   if (Component.getInitialProps) {
@@ -32,12 +32,19 @@ App.getInitialProps = async function({ Component, ctx }) {
 
   return {
     pageProps,
-  }
+  };
 };
 
 App.propTypes = {
+  apollo: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   Component: PropTypes.func,
-  pageProps: PropTypes.object,
+  pageProps: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+};
+
+App.defaultProps = {
+  apollo: {},
+  Component: () => { },
+  pageProps: {},
 };
 
 export default withData(App);

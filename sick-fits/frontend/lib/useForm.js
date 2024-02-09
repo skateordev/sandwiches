@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react';
 
 export default function useForm(initial = {}) {
   const [inputs, setInputs] = useState(initial);
@@ -13,10 +13,11 @@ export default function useForm(initial = {}) {
   }, [initialValues]);
 
   function handleChange(evt) {
-    let { name, type, files, value } = evt.target;
+    let { value } = evt.target;
+    const { name, type, files } = evt.target;
 
     if (type === 'number') {
-      value = parseInt(value);
+      value = parseInt(value, 10);
     }
 
     if (type === 'file') {
@@ -27,17 +28,16 @@ export default function useForm(initial = {}) {
     setInputs({
       ...inputs,
       [name]: value,
-    })
+    });
   }
 
   function resetForm() {
-    setInputs(initial)
+    setInputs(initial);
   }
 
   function clearForm() {
-    console.log('inputs', inputs);
     const blankState = Object.fromEntries(
-      Object.entries(inputs).map(([key, value]) => [key, ''])
+      Object.entries(inputs).map(([key]) => [key, '']),
     );
 
     setInputs(blankState);
@@ -48,5 +48,5 @@ export default function useForm(initial = {}) {
     clearForm,
     resetForm,
     handleChange,
-  }
-};
+  };
+}

@@ -20,5 +20,9 @@ export default function Page({ children }) {
 }
 
 Page.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+};
+
+Page.defaultProps = {
+  children: null,
 };

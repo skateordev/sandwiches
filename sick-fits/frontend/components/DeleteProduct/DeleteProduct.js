@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
-import { SickButton } from "../styles";
 import styled from 'styled-components';
 import { useMutation } from '@apollo/client';
-import { DELETE_PRODUCT_MUTATION } from './mutations/deleteProductMutation';
 import { useRef, useState, useEffect } from 'react';
-import { ALL_PRODUCTS_QUERY } from '../Products/queries/allProductsQuery';
 import Router from 'next/router';
+import DELETE_PRODUCT_MUTATION from './mutations/deleteProductMutation';
+import { SickButton } from '../styles';
 
 const ModalLayer = styled.dialog`
   div {
@@ -29,11 +28,11 @@ export default function DeleteProduct({ id, isModalOpen, cancelDelete }) {
 
     if (deleteModal) {
       if (isOpen) {
-        deleteModal.showModal()
+        deleteModal.showModal();
       } else {
-        deleteModal.close()
+        deleteModal.close();
       }
-    };
+    }
   }, []);
 
   // this will update the product listing without having to refetch/requery all products!
@@ -42,22 +41,22 @@ export default function DeleteProduct({ id, isModalOpen, cancelDelete }) {
   }
 
   // send deleteProductMutation
-  const [deleteProduct, { error: deletionError, loading: isDeleteLoading }] = useMutation(
+  const [deleteProduct, { loading: isDeleteLoading }] = useMutation(
     DELETE_PRODUCT_MUTATION,
     {
       update: updateCache,
       variables: { id },
-    }
+    },
   );
 
   const deleteProductHandler = async () => {
-    await deleteProduct().catch((err) => alert(err.message));
+    await deleteProduct().catch((err) => alert(err.message)); // eslint-disable-line no-alert
 
     setIsOpen(false);
 
     Router.push({
-      pathname: `/products/`,
-    })
+      pathname: '/products/',
+    });
   };
 
   const cancelDeleteHandler = () => {
@@ -67,8 +66,18 @@ export default function DeleteProduct({ id, isModalOpen, cancelDelete }) {
   return (
     <ModalLayer ref={modalRef}>
       <div>
-        <SickButton onClick={cancelDeleteHandler} disabled={isDeleteLoading}>Just Kidding! 😅</SickButton>
-        <SickButton onClick={deleteProductHandler} disabled={isDeleteLoading}>Delete 💣</SickButton>
+        <SickButton
+          onClick={cancelDeleteHandler}
+          disabled={isDeleteLoading}
+        >
+          Just Kidding! 😅
+        </SickButton>
+        <SickButton
+          onClick={deleteProductHandler}
+          disabled={isDeleteLoading}
+        >
+          Delete 💣
+        </SickButton>
       </div>
     </ModalLayer>
   );
@@ -76,4 +85,10 @@ export default function DeleteProduct({ id, isModalOpen, cancelDelete }) {
 
 DeleteProduct.propTypes = {
   id: PropTypes.string.isRequired,
+  isModalOpen: PropTypes.bool.isRequired,
+  cancelDelete: PropTypes.func,
+};
+
+DeleteProduct.defaultProps = {
+  cancelDelete: () => { },
 };

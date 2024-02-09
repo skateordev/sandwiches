@@ -1,7 +1,9 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
-export const DELETE_PRODUCT_MUTATION = gql`
+const DELETE_PRODUCT_MUTATION = gql`
   mutation DELETE_PRODUCT_MUTATION($id: ID!) {
     deleteProduct(id: $id) { id }
   }
 `;
+
+export default DELETE_PRODUCT_MUTATION;

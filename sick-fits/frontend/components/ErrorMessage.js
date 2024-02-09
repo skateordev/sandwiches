@@ -18,18 +18,21 @@ const ErrorStyles = styled.div`
   }
 `;
 
-const ErrorMessage = ({ error }) => {
+export default function ErrorMessage({ error }) {
   if (!error || !error.message) return null;
+
   if (error.networkError && error.networkError.result && error.networkError.result.errors.length) {
-    return error.networkError.result.errors.map((error, i) => (
+    return error.networkError.result.errors.map((err, i) => (
+      // eslint-disable-next-line react/no-array-index-key
       <ErrorStyles key={i}>
         <p data-test="graphql-error">
           <strong>Shoot!</strong>
-          {error.message.replace('GraphQL error: ', '')}
+          {err.message.replace('GraphQL error: ', '')}
         </p>
       </ErrorStyles>
     ));
   }
+
   return (
     <ErrorStyles>
       <p data-test="graphql-error">
@@ -38,14 +41,8 @@ const ErrorMessage = ({ error }) => {
       </p>
     </ErrorStyles>
   );
-};
-
-ErrorMessage.defaultProps = {
-  error: {},
-};
+}
 
 ErrorMessage.propTypes = {
-  error: PropTypes.object,
+  error: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
-
-export default ErrorMessage;

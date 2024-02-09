@@ -7,7 +7,8 @@
     "dev": "next -p 7777",
     "build": "next build",
     "start": "next start -p 7777",
-    "test": "NODE_ENV=test jest --watch"
+    "test": "NODE_ENV=test jest --watch",
+    "reset": "rimraf node_modules/ && npm i"
   },
   "author": "",
   "license": "ISC",
@@ -46,21 +47,15 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
     "casual": "^1.6.2",
-    "eslint": "^7.14.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-wesbos": "^1.0.1",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-html": "^6.1.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "jest": "^26.6.3",
     "react-test-renderer": "^17.0.1"
-  },
-  "eslintConfig": {
-    "extends": [
-      "wesbos"
-    ]
   },
   "jest": {
     "setupFilesAfterEnv": [

@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
-import { useQuery } from "@apollo/client";
-import { SINGLE_ITEM_QUERY } from './queries/singleProductQuery';
-import ErrorMessage from '../ErrorMessage';
+import { useQuery } from '@apollo/client';
 import Head from 'next/head';
 import styled from 'styled-components';
-import { ItemStyled } from '../styles';
+import SINGLE_ITEM_QUERY from './queries/singleProductQuery';
+import ErrorMessage from '../ErrorMessage';
 
 const ProductStyled = styled.div`
   display: grid;
@@ -27,8 +26,8 @@ export default function SingleProduct({ id }) {
     },
   });
 
- if (error) return <ErrorMessage error={error} />;
- if (isLoading || !data) return <div>Loading... 💃</div>;
+  if (error) return <ErrorMessage error={error} />;
+  if (isLoading || !data) return <div>Loading... 💃</div>;
 
   const {
     name,
@@ -39,10 +38,13 @@ export default function SingleProduct({ id }) {
   return (
     <ProductStyled>
       <Head>
-        <title>SECK FETS | {name}</title>
+        <title>
+          SECK FETS |
+          {name}
+        </title>
       </Head>
       <img src={photo?.image?.publicUrlTransformed} alt={photo?.altText} />
-      <div className='details'>
+      <div className="details">
         <h2>{name}</h2>
         <p>{description}</p>
       </div>

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Router from 'next/router';
 import { useMutation, useQuery } from '@apollo/client';
@@ -6,8 +7,8 @@ import useForm from '../../lib/useForm';
 import { FormStyled, SickButton } from '../styles';
 import ErrorMessage from '../ErrorMessage';
 import { UPDATE_PRODUCT_MUTATION } from './mutations/updateProductMutation';
-import { ALL_PRODUCTS_QUERY } from '../Products/queries/allProductsQuery';
-import { SINGLE_ITEM_QUERY } from '../SingleProduct/queries/singleProductQuery';
+import ALL_PRODUCTS_QUERY from '../Products/queries/allProductsQuery';
+import SINGLE_ITEM_QUERY from '../SingleProduct/queries/singleProductQuery';
 import DeleteProduct from '../DeleteProduct/DeleteProduct';
 
 const ActionBar = styled.div`
@@ -27,8 +28,8 @@ export default function UpdateProduct({ id }) {
     loading: isQueryLoading,
   } = useQuery(SINGLE_ITEM_QUERY, {
     variables: {
-      id
-    }
+      id,
+    },
   });
 
   // create some state for the form inputs:
@@ -37,7 +38,7 @@ export default function UpdateProduct({ id }) {
   const { name, price, description } = inputs;
 
   // send the mutation to update the product
-  const [updateProduct, { data: updateData, error: updateError, loading: isUpdateLoading }] = useMutation(
+  const [updateProduct, { error: updateError, loading: isUpdateLoading }] = useMutation(
     UPDATE_PRODUCT_MUTATION,
     {
       variables: {
@@ -47,7 +48,7 @@ export default function UpdateProduct({ id }) {
         description,
       },
       refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
-    }
+    },
   );
 
   // function to do the actual update
@@ -62,13 +63,13 @@ export default function UpdateProduct({ id }) {
     // go to the newly created product's page
     Router.push({
       pathname: `/product/${res.data.updateProduct.id}`,
-    })
+    });
   };
 
   const errorMessage = queryError || updateError;
   const isLoading = isQueryLoading || isUpdateLoading;
 
-  if (isQueryLoading) return <div>Loading...💦</div>
+  if (isQueryLoading) return <div>Loading...💦</div>;
 
   return (
     <>
@@ -124,7 +125,17 @@ export default function UpdateProduct({ id }) {
           <SickButton type="button" onClick={() => setIsDeleteModalOpen(true)}>Delete Product 💀</SickButton>
         </ActionBar>
       </FormStyled>
-      {isDeleteModalOpen && <DeleteProduct id={id} isModalOpen={isDeleteModalOpen} cancelDelete={() => setIsDeleteModalOpen(false)} />}
+      {isDeleteModalOpen && (
+        <DeleteProduct
+          id={id}
+          isModalOpen={isDeleteModalOpen}
+          cancelDelete={() => setIsDeleteModalOpen(false)}
+        />
+      )}
     </>
-  )
+  );
+}
+
+UpdateProduct.propTypes = {
+  id: PropTypes.string.isRequired,
 };

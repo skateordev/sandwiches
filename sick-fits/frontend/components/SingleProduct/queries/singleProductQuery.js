@@ -1,6 +1,6 @@
-import gql from 'graphql-tag'
+import gql from 'graphql-tag';
 
-export const SINGLE_ITEM_QUERY = gql`
+const SINGLE_ITEM_QUERY = gql`
   query SINGLE_ITEM_QUERY($id: ID!) {
     Product(where: { id: $id }) {
       id
@@ -14,3 +14,5 @@ export const SINGLE_ITEM_QUERY = gql`
     }
   }
 `;
+
+export default SINGLE_ITEM_QUERY;

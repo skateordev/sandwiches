@@ -1,4 +1,6 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, {
+  Html, Head, Main, NextScript,
+} from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
@@ -7,7 +9,7 @@ export default class MyDocument extends Document {
 
     const page = renderPage(
       // eslint-disable-next-line react/jsx-props-no-spreading
-      (App) => (props) => sheet.collectStyles(<App {...props} />)
+      (App) => (props) => sheet.collectStyles(<App {...props} />),
     );
 
     const styleTags = sheet.getStyleElement();

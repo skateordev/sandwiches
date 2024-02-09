@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
-export const CREATE_PRODUCT_MUTATION = gql`
+const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
     # which variables are getting passed in? and what types are the
     # ! deliminates a required input
@@ -29,3 +29,5 @@ export const CREATE_PRODUCT_MUTATION = gql`
     }
   }
 `;
+
+export default CREATE_PRODUCT_MUTATION;

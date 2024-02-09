@@ -47,7 +47,7 @@ export default function Header() {
         <Nav />
       </div>
       <div className="sub-bar">
-        <p>"Search"</p>
+        <p>&quot;Search&quot;</p>
       </div>
     </HeaderStyled>
   );

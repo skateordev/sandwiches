@@ -1,10 +1,10 @@
-import useForm from "../../lib/useForm";
-import { FormStyled, SickButton } from "../styles";
-import Router from "next/router";
-import { useMutation } from "@apollo/client";
-import ErrorMessage from "../ErrorMessage";
-import { CREATE_PRODUCT_MUTATION } from "./mutations/createProductMutation";
-import { ALL_PRODUCTS_QUERY } from "../Products/queries/allProductsQuery";
+import Router from 'next/router';
+import { useMutation } from '@apollo/client';
+import useForm from '../../lib/useForm';
+import { FormStyled, SickButton } from '../styles';
+import ErrorMessage from '../ErrorMessage';
+import CREATE_PRODUCT_MUTATION from './mutations/createProductMutation';
+import ALL_PRODUCTS_QUERY from '../Products/queries/allProductsQuery';
 
 export default function CreateProduct() {
   const initialValues = {
@@ -14,16 +14,16 @@ export default function CreateProduct() {
     description: 'I got somethin to say',
   };
 
-  const { inputs, clearForm, resetForm, handleChange } = useForm(initialValues);
+  const { inputs, handleChange } = useForm(initialValues);
 
   const { name, price, description } = inputs;
 
-  const [createProduct, { data, error: errorMessage, loading: isLoading }] = useMutation(
+  const [createProduct, { error: errorMessage, loading: isLoading }] = useMutation(
     CREATE_PRODUCT_MUTATION,
     {
       variables: inputs,
       refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
-    }
+    },
   );
 
   const submitNewProductHandler = async (evt) => {
@@ -36,7 +36,7 @@ export default function CreateProduct() {
     // go to the newly created product's page
     Router.push({
       pathname: `/product/${res.data.createProduct.id}`,
-    })
+    });
   };
 
   return (
@@ -89,5 +89,5 @@ export default function CreateProduct() {
 
       <SickButton type="submit">+ Add Product</SickButton>
     </FormStyled>
-  )
-};
+  );
+}
