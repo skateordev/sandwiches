@@ -44,5 +44,9 @@ export default function ErrorMessage({ error }) {
 }
 
 ErrorMessage.propTypes = {
-  error: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  error: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+};
+
+ErrorMessage.defaultProps = {
+  error: undefined,
 };
