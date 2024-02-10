@@ -11,8 +11,10 @@ const ProductsListStyled = styled.div`
 
 export default function Products() {
   const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY);
+  const { allProducts } = data;
 
   if (loading) { return <p>Loading...⏳</p>; }
+
   if (error) {
     return (
       <p>
@@ -25,7 +27,7 @@ export default function Products() {
   return (
     <div>
       <ProductsListStyled>
-        {data.allProducts.map((product) => {
+        {allProducts.map((product) => {
           const { id } = product;
 
           return (
