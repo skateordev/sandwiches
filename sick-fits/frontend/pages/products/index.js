@@ -8,7 +8,7 @@ export default function ProductsPage() {
   return (
     <div>
       <Pagination currentPage={currentPage || 1} />
-      <Products />
+      <Products currentPage={currentPage || 1} />
       <Pagination currentPage={currentPage || 1} />
     </div>
   );
