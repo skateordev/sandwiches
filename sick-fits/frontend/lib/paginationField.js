@@ -54,13 +54,13 @@ export default function paginationField() {
     },
     merge: (existing, incoming, { args }) => {
       // this runs when the Apollo client comes back from the network with our product
-      const { skip, first } = args;
+      const { skip } = args;
 
       console.log(`Merging ${incoming.length} items from the network 🌐`);
 
       const merged = existing ? existing.slice(0) : [];
 
-      for (let i = skip; i < skip + incoming.length; ++i) {
+      for (let i = skip; i < skip + incoming.length; i++) {
         merged[i] = incoming[i - skip];
       }
 

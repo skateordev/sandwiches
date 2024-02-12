@@ -21,6 +21,7 @@
   ],
   "rules": {
     "react/jsx-filename-extension": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
   }
 }
