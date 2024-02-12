@@ -17,28 +17,19 @@ export default function Pagination({ currentPage }) {
 
   return (
     <PaginationStyled>
+      {/* eslint-disable react/jsx-one-expression-per-line, jsx-a11y/anchor-is-valid */}
       <Head>
-        {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
         <title>SECK FETZ - Page {currentPage} of {pageCount}</title>
       </Head>
       <Link href={`/products/${currentPage + 1}`}>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a aria-disabled={currentPage <= 1}>👈 Prev</a>
       </Link>
-      <p>
-        {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-        Page {currentPage} of {pageCount}
-      </p>
-      <p>
-        {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-        {productCount} Items Total
-      </p>
+      <p>Page {currentPage} of {pageCount}</p>
+      <p>{productCount} Items Total</p>
       <Link href={`/products/${currentPage - 1}`}>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a aria-disabled={currentPage >= pageCount}>
-          Next 👉
-        </a>
+        <a aria-disabled={currentPage >= pageCount}>Next 👉</a>
       </Link>
+      {/* eslint-enable react/jsx-one-expression-per-line, jsx-a11y/anchor-is-valid */}
     </PaginationStyled>
   );
 }
