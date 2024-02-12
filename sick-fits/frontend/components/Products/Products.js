@@ -1,7 +1,9 @@
+import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 import Product from './Product';
 import ALL_PRODUCTS_QUERY from './queries/allProductsQuery';
+import { ITEMS_PER_PAGE } from '../constants';
 
 const ProductsListStyled = styled.div`
   display: grid;
@@ -9,8 +11,13 @@ const ProductsListStyled = styled.div`
   grid-gap: 60px;
 `;
 
-export default function Products() {
-  const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY);
+export default function Products({ currentPage }) {
+  const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY, {
+    variables: {
+      skip: currentPage * ITEMS_PER_PAGE - ITEMS_PER_PAGE,
+      first: ITEMS_PER_PAGE,
+    },
+  });
 
   if (loading) { return <p>Loading...⏳</p>; }
 
@@ -37,3 +44,11 @@ export default function Products() {
     </div>
   );
 }
+
+Products.propTypes = {
+  currentPage: PropTypes.number,
+};
+
+Products.defaultProps = {
+  currentPage: 1,
+};
