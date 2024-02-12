@@ -12,24 +12,24 @@ export default function Pagination({ currentPage }) {
   if (isLoading) return 'Loading...💦';
   if (error) return <ErrorMessage error={error} />;
 
-  const { count: productCount } = data._allProductsMeta; // eslint-disable-line no-underscore-dangle
+  const { count: productCount } = data._allProductsMeta;
   const pageCount = Math.ceil(productCount / ITEMS_PER_PAGE);
 
   return (
     <PaginationStyled>
-      {/* eslint-disable react/jsx-one-expression-per-line, jsx-a11y/anchor-is-valid */}
+      {/* eslint-disable react/jsx-one-expression-per-line */}
       <Head>
         <title>SECK FETZ - Page {currentPage} of {pageCount}</title>
       </Head>
-      <Link href={`/products/${currentPage - 1}`}>
-        <a aria-disabled={currentPage <= 1}>👈 Prev</a>
+      <Link href={`/products/${currentPage - 1}`} passHref>
+        <a href="passedHref" aria-disabled={currentPage <= 1}>👈 Prev</a>
       </Link>
       <p>Page {currentPage} of {pageCount}</p>
       <p>{productCount} Items Total</p>
-      <Link href={`/products/${currentPage + 1}`}>
-        <a aria-disabled={currentPage >= pageCount}>Next 👉</a>
+      <Link href={`/products/${currentPage + 1}`} passHref>
+        <a href="passedHref" aria-disabled={currentPage >= pageCount}>Next 👉</a>
       </Link>
-      {/* eslint-enable react/jsx-one-expression-per-line, jsx-a11y/anchor-is-valid */}
+      {/* eslint-enable react/jsx-one-expression-per-line */}
     </PaginationStyled>
   );
 }
