@@ -21,12 +21,12 @@ export default function Pagination({ currentPage }) {
       <Head>
         <title>SECK FETZ - Page {currentPage} of {pageCount}</title>
       </Head>
-      <Link href={`/products/${currentPage + 1}`}>
+      <Link href={`/products/${currentPage - 1}`}>
         <a aria-disabled={currentPage <= 1}>👈 Prev</a>
       </Link>
       <p>Page {currentPage} of {pageCount}</p>
       <p>{productCount} Items Total</p>
-      <Link href={`/products/${currentPage - 1}`}>
+      <Link href={`/products/${currentPage + 1}`}>
         <a aria-disabled={currentPage >= pageCount}>Next 👉</a>
       </Link>
       {/* eslint-enable react/jsx-one-expression-per-line, jsx-a11y/anchor-is-valid */}
