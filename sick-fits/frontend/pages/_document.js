@@ -1,5 +1,8 @@
 import Document, {
-  Html, Head, Main, NextScript,
+  Html,
+  Head,
+  Main,
+  NextScript,
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
@@ -23,7 +26,9 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en-ca">
-        <Head />
+        <Head>
+          <link rel="icon" href="/public/static/icon.png" type="image/png" />
+        </Head>
         <body>
           <Main />
           <NextScript />

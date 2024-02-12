@@ -41,11 +41,7 @@ export default function paginationField() {
       if (items.length) {
         /* items have been found in cache, don't need to
            go to network */
-        console.log(
-          `💥 GOT EEEM!
-          🔍 Found ${existing.length} items!
-          🪂 Sending to apollo...`,
-        );
+        console.log(`💥 GOT EEEM!\n🔍 Found ${existing.length} cached items!\n🪂 Sending to apollo...`);
 
         return items;
       }

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import useForm from '../../lib/useForm';
 import { FormStyled, SickButton } from '../styles';
 import ErrorMessage from '../ErrorMessage';
-import { UPDATE_PRODUCT_MUTATION } from './mutations/updateProductMutation';
+import UPDATE_PRODUCT_MUTATION from './mutations/updateProductMutation';
 import ALL_PRODUCTS_QUERY from '../Products/queries/allProductsQuery';
 import SINGLE_ITEM_QUERY from '../SingleProduct/queries/singleProductQuery';
 import DeleteProduct from '../DeleteProduct/DeleteProduct';

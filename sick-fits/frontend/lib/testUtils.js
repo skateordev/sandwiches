@@ -1,5 +1,5 @@
 import casual from 'casual'; // eslint-disable-line import/no-extraneous-dependencies
-import { PAGINATION_QUERY } from '../components/Pagination/queries/paginationQuery';
+import PAGINATION_QUERY from '../components/Pagination/queries/paginationQuery';
 
 // seed it so we get consistent results
 casual.seed(777);

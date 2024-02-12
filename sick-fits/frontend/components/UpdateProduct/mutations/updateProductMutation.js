@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
-export const UPDATE_PRODUCT_MUTATION = gql`
+const UPDATE_PRODUCT_MUTATION = gql`
   mutation UPDATE_PRODUCT_MUTATION(
     $id: ID!
     $name: String
@@ -24,7 +24,7 @@ export const UPDATE_PRODUCT_MUTATION = gql`
       }
     ) {
       id
-  		name
+      name
       price
       # photo {
       #   image { publicUrlTransformed }
@@ -34,3 +34,5 @@ export const UPDATE_PRODUCT_MUTATION = gql`
     }
   }
 `;
+
+export default UPDATE_PRODUCT_MUTATION;
