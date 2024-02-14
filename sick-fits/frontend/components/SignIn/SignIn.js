@@ -71,13 +71,12 @@ export default function SignIn() {
             value={password}
             onChange={handleChange}
             required
-            placeholder="Create a password"
+            placeholder="Now do the password"
           />
         </label>
       </fieldset>
 
-      <SickButton type="submit">Let&apos;s go! 🚀</SickButton>
-      <SickButton type="button" onClick={resetForm}>Start over</SickButton>
+      <SickButton type="submit">Lemme iinnnn! 🎟️</SickButton>
     </Form>
   );
 }
