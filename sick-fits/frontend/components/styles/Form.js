@@ -31,20 +31,30 @@ const Form = styled.form`
     padding: 0.5rem;
     font-size: 1rem;
     border: 1px solid black;
-    &:focus {
-      outline: 0;
-      border-color: var(--red);
+    &:focus,
+    &:focus-visible {
+      outline: 0.255rem solid var(--red);
+      border-color: transparent;
     }
   }
   button,
   input[type='submit'] {
     width: auto;
-    background: red;
-    color: white;
+    background: var(--black);
+    color: var(--white);
     border: 0;
-    font-size: 2rem;
+    font-size: 1.25rem;
     font-weight: 600;
     padding: 0.5rem 1.2rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus-visible {
+      outline: 0.255rem solid var(--red);
+      transition: outline 0s;
+    }
   }
   fieldset {
     border: 0;

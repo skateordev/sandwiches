@@ -1,10 +1,8 @@
 import { useMutation } from '@apollo/client';
-import router from 'next/router';
 // import styled from 'styled-components';
 import useForm from '../../lib/useForm';
 import ErrorMessage from '../ErrorMessage';
-import { SickButton } from '../styles';
-import Form from '../styles/Form';
+import { FormStyled, SickButton } from '../styles';
 import SIGN_IN_MUTATION from './mutations/signInMutation';
 import CURRENT_USER_QUERY from '../User/queries/currentUserQuery';
 
@@ -45,13 +43,12 @@ export default function SignIn() {
     await signInMutation();
 
     resetForm(); // clear the form data after clicking sign in
-    router.push('/products');
   };
 
   return (
     /* POST method is muy importante to avoid leaking sensitive
        data into URL params and server logs */
-    <Form method="POST" onSubmit={submitSignInHandler}>
+    <FormStyled method="POST" onSubmit={submitSignInHandler}>
       <h2>Sign into your account</h2>
       <ErrorMessage error={signInError} />
       <fieldset disabled={isLoading} aria-busy={isLoading}>
@@ -88,6 +85,6 @@ export default function SignIn() {
         <SickButton type="button">I forget the thing 👉👈</SickButton>
       </ButtonContainer> */}
       <SickButton type="submit">Lemme iinnnn! 🎟️</SickButton>
-    </Form>
+    </FormStyled>
   );
 }
