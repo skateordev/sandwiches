@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { SignIn, SignUp } from '../components';
+import ResetPassword from '../components/ResetPassword/ResetPassword';
 
 const GridDiv = styled.div`
   display: grid;
@@ -12,6 +13,7 @@ export default function SignInPage() {
     <GridDiv>
       <SignIn />
       <SignUp />
+      <ResetPassword />
     </GridDiv>
   );
 }
