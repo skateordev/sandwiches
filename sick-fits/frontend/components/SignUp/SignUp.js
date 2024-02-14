@@ -30,6 +30,7 @@ export default function SignUp() {
   const submitSignUpHandler = async (evt) => {
     evt.preventDefault(); // stop form from submitting
 
+    // eslint-disable-next-line no-console
     await createUser().catch(console.error);
 
     resetForm(); // clear the form data after clicking sign up
