@@ -1,31 +1,34 @@
 import { useMutation } from '@apollo/client';
 import useForm from '../../lib/useForm';
 import ErrorMessage from '../ErrorMessage';
-import { SickButton } from '../styles';
-import Form from '../styles/Form';
-import REQUEST_PASSWORD_RESET_MUTATION from './mutations/resetPasswordMutation';
+import { FormStyled, SickButton } from '../styles';
+import { RESET_PASSWORD_MUTATION } from './mutations';
 
 export default function ResetPassword() {
   const initialValues = {
     email: '',
+    token: '',
+    password: '',
   };
 
   const { inputs, handleChange, resetForm } = useForm(initialValues);
 
-  const { email } = inputs;
+  const { email, token, password } = inputs;
 
   const [
-    sendUserPasswordResetLink,
+    redeemUserPasswordResetToken,
     {
       data,
       error: passwordResetError,
       loading: isLoading,
     },
   ] = useMutation(
-    REQUEST_PASSWORD_RESET_MUTATION,
+    RESET_PASSWORD_MUTATION,
     {
       variables: {
         email,
+        token,
+        password,
       },
     },
   );
@@ -33,20 +36,20 @@ export default function ResetPassword() {
   const submitPasswordResetHandler = async (evt) => {
     evt.preventDefault(); // stop form from submitting
 
-    await sendUserPasswordResetLink();
+    await redeemUserPasswordResetToken();
 
     resetForm(); // clear the form data after clicking
   };
 
   const showSuccessMessage = () => (
-    data?.sendUserPasswordResetLink === null && <p>Heard! Password reset inc ✨</p>
+    data?.sendUserPasswordResetLink === null && <p>It is done.</p>
   );
 
   return (
     /* POST method is muy importante to avoid leaking sensitive
        data into URL params and server logs */
-    <Form method="POST" onSubmit={submitPasswordResetHandler}>
-      <h2>Plea4Password</h2>
+    <FormStyled method="POST" onSubmit={submitPasswordResetHandler}>
+      <h2>Reinvent your password</h2>
       <ErrorMessage error={passwordResetError} />
       {showSuccessMessage()}
       <fieldset disabled={isLoading} aria-busy={isLoading}>
@@ -59,13 +62,25 @@ export default function ResetPassword() {
             value={email}
             onChange={handleChange}
             required
-            placeholder="Where does the email go sending"
+            placeholder="What are the emailfor it"
             autoComplete="email"
+          />
+        </label>
+        <label htmlFor="password">
+          Password
+          <input
+            id="password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={handleChange}
+            required
+            placeholder="Put the new into side of here"
           />
         </label>
       </fieldset>
 
-      <SickButton type="button" onClick={submitPasswordResetHandler}>I forget the thing 👉👈</SickButton>
-    </Form>
+      <SickButton type="button" onClick={submitPasswordResetHandler}>Dew itt.</SickButton>
+    </FormStyled>
   );
 }
