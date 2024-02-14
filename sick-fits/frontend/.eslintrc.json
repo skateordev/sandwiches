@@ -20,9 +20,10 @@
     "react"
   ],
   "rules": {
-    "react/jsx-filename-extension": "off",
-    "react/react-in-jsx-scope": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": "off",
+    "react/jsx-one-expression-per-line": "off"
   }
 }
