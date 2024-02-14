@@ -6,7 +6,7 @@ import Router from 'next/router';
 import DELETE_PRODUCT_MUTATION from './mutations/deleteProductMutation';
 import { SickButton } from '../styles';
 
-const ModalLayer = styled.dialog`
+const DialogStyled = styled.dialog`
   div {
     display: grid;
     gap: 0.5rem;
@@ -64,7 +64,7 @@ export default function DeleteProduct({ id, isModalOpen, cancelDelete }) {
   };
 
   return (
-    <ModalLayer ref={modalRef}>
+    <DialogStyled ref={modalRef}>
       <div>
         <SickButton
           onClick={cancelDeleteHandler}
@@ -79,7 +79,7 @@ export default function DeleteProduct({ id, isModalOpen, cancelDelete }) {
           Delete 💣
         </SickButton>
       </div>
-    </ModalLayer>
+    </DialogStyled>
   );
 }
 
