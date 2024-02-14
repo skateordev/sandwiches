@@ -1,25 +1,25 @@
+import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/client';
 import useForm from '../../lib/useForm';
 import ErrorMessage from '../ErrorMessage';
 import { FormStyled, SickButton } from '../styles';
 import { RESET_PASSWORD_MUTATION } from './mutations';
 
-export default function ResetPassword() {
+export default function ResetPassword({ token }) {
   const initialValues = {
     email: '',
-    token: '',
     password: '',
   };
 
-  const { inputs, handleChange, resetForm } = useForm(initialValues);
+  const { inputs, resetForm, handleChange } = useForm(initialValues);
 
-  const { email, token, password } = inputs;
+  const { email, password } = inputs;
 
   const [
     redeemUserPasswordResetToken,
     {
       data,
-      error: passwordResetError,
+      error,
       loading: isLoading,
     },
   ] = useMutation(
@@ -36,21 +36,26 @@ export default function ResetPassword() {
   const submitPasswordResetHandler = async (evt) => {
     evt.preventDefault(); // stop form from submitting
 
-    await redeemUserPasswordResetToken();
+    // eslint-disable-next-line no-console
+    await redeemUserPasswordResetToken().catch(console.error);
 
     resetForm(); // clear the form data after clicking
   };
 
   const showSuccessMessage = () => (
-    data?.sendUserPasswordResetLink === null && <p>It is done.</p>
+    data?.redeemUserPasswordResetToken === null && <p>It is done.</p>
   );
+
+  const falsePositive = data?.redeemUserPasswordResetToken?.code
+    ? data?.redeemUserPasswordResetToken
+    : undefined;
 
   return (
     /* POST method is muy importante to avoid leaking sensitive
        data into URL params and server logs */
     <FormStyled method="POST" onSubmit={submitPasswordResetHandler}>
       <h2>Reinvent your password</h2>
-      <ErrorMessage error={passwordResetError} />
+      <ErrorMessage error={error || falsePositive} />
       {showSuccessMessage()}
       <fieldset disabled={isLoading} aria-busy={isLoading}>
         <label htmlFor="email">
@@ -84,3 +89,7 @@ export default function ResetPassword() {
     </FormStyled>
   );
 }
+
+ResetPassword.propTypes = {
+  token: PropTypes.string.isRequired,
+};

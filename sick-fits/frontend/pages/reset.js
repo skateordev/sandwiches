@@ -13,8 +13,8 @@ export default function ResetPage({ query }) {
 
   return (
     <div>
-      <p>Reset yawn pashvert {query.token}</p>
-      <ResetPassword />
+      <p>Rese&apos; yawn passward</p>
+      <ResetPassword token={query?.token} />
     </div>
   );
 }
