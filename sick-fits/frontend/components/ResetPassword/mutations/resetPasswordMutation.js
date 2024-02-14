@@ -1,16 +1,20 @@
 import gql from 'graphql-tag';
 
-const REQUEST_PASSWORD_RESET_MUTATION = gql`
-  mutation REQUEST_PASSWORD_RESET_MUTATION(
-    $email: String!
-  ) {
-    sendUserPasswordResetLink(
+const RESET_PASSWORD_MUTATION = gql`
+  mutation RESET_PASSWORD_MUTATION(
+    $email: String!,
+    $token: String!,
+    $password: String!,
+  ){
+    redeemUserPasswordResetToken(
       email: $email
+      token: $token
+      password: $password
     ) {
-      code
-      message
+        code
+        message
     }
   }
 `;
 
-export default REQUEST_PASSWORD_RESET_MUTATION;
+export default RESET_PASSWORD_MUTATION;
