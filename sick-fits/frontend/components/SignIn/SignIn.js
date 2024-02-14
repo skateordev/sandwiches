@@ -1,11 +1,17 @@
 import { useMutation } from '@apollo/client';
 import router from 'next/router';
+// import styled from 'styled-components';
 import useForm from '../../lib/useForm';
 import ErrorMessage from '../ErrorMessage';
 import { SickButton } from '../styles';
 import Form from '../styles/Form';
 import SIGN_IN_MUTATION from './mutations/signInMutation';
 import CURRENT_USER_QUERY from '../User/queries/currentUserQuery';
+
+// const ButtonContainer = styled.div`
+//   display: grid;
+//   gap: 1rem;
+// `;
 
 export default function SignIn() {
   const initialValues = {
@@ -58,7 +64,7 @@ export default function SignIn() {
             value={email}
             onChange={handleChange}
             required
-            placeholder="Enter your email address"
+            placeholder="Your email address goes here!"
             autoComplete="email"
           />
         </label>
@@ -76,6 +82,11 @@ export default function SignIn() {
         </label>
       </fieldset>
 
+      {/* <ButtonContainer>
+        <SickButton type="submit">Lemme iinnnn! 🎟️</SickButton>
+        // TODO: show/hide password reset on click ⬇️
+        <SickButton type="button">I forget the thing 👉👈</SickButton>
+      </ButtonContainer> */}
       <SickButton type="submit">Lemme iinnnn! 🎟️</SickButton>
     </Form>
   );
