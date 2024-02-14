@@ -26,7 +26,7 @@ export default function ErrorMessage({ error }) {
       // eslint-disable-next-line react/no-array-index-key
       <ErrorStyles key={i}>
         <p data-test="graphql-error">
-          <strong>Shoot!</strong>
+          🍌➿☁️🎣🏎️&nbsp;
           {err.message.replace('GraphQL error: ', '')}
         </p>
       </ErrorStyles>
@@ -36,7 +36,7 @@ export default function ErrorMessage({ error }) {
   return (
     <ErrorStyles>
       <p data-test="graphql-error">
-        <strong>Shoot!</strong>
+        🍌➿☁️🎣🏎️&nbsp;
         {error.message.replace('GraphQL error: ', '')}
       </p>
     </ErrorStyles>
