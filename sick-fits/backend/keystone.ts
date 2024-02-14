@@ -7,6 +7,7 @@ import {
 } from '@keystone-next/keystone/session';
 import { User } from './schemas/User';
 import { Product } from './schemas/Product';
+import { CartItem } from './schemas/CartItem';
 import { ProductImage } from './schemas/ProductImage';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
@@ -57,8 +58,10 @@ export default withAuth(
       },
     },
     lists: createSchema({
+      // Schema items go here
       User,
       Product,
+      CartItem,
       ProductImage,
     }),
     ui: {
@@ -68,6 +71,7 @@ export default withAuth(
     },
     // TODO: add session values here
     session: withItemData(statelessSessions(sessionConfig), {
+      // GraphQL query
       User: 'id',
     }),
   })
