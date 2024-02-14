@@ -75,7 +75,7 @@ export default function SignUp() {
             value={email}
             onChange={handleChange}
             required
-            placeholder="Enter your email address"
+            placeholder="Wat does you are email"
             autoComplete="email"
           />
         </label>
@@ -88,7 +88,7 @@ export default function SignUp() {
             value={password}
             onChange={handleChange}
             required
-            placeholder="Create a password"
+            placeholder="Invent a password"
           />
         </label>
       </fieldset>
