@@ -14,7 +14,7 @@ const NavStyles = styled.ul`
     position: relative;
     text-transform: uppercase;
     font-weight: 900;
-    font-size: 1em;
+    font-size: 1.5rem;
     background: none;
     border: 0;
     color: var(--black);
@@ -36,7 +36,7 @@ const NavStyles = styled.ul`
     }
     &:after {
       height: 2px;
-      background: red;
+      background: var(--red);
       content: '';
       width: 0;
       position: absolute;

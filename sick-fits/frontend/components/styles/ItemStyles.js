@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ItemStyles = styled.div`
-  background: white;
+  background: var(--white);
   border: 1px solid var(--offWhite);
   box-shadow: var(--boxShadow);
   position: relative;
@@ -27,7 +27,7 @@ const ItemStyles = styled.div`
     grid-gap: 1px;
     background: var(--lightGray);
     & > * {
-      background: white;
+      background: var(--white);
       border: 0;
       font-size: 1rem;
       padding: 1rem;

@@ -7,7 +7,10 @@ const CloseButton = styled.button`
   border: 0;
   position: absolute;
   z-index: 2;
-  right: 0;
+  right: 10px;
+  line-height: 0.7;
+  padding-bottom: 0.5rem;
+  transform: skew(-2deg);
 `;
 
 export default CloseButton;

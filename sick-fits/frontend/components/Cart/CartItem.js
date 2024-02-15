@@ -9,7 +9,7 @@ const CartItemStyled = styled.li`
   grid-template-columns: auto 1fr auto;
 
   img {
-    margin-right: 1rem;
+    margin-right: 6rem;
   }
 
   p {
