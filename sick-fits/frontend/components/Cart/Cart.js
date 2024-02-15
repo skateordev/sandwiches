@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import formatMoney from '../../lib/formatMoney';
 import useUser from '../User/User';
-import { CartStyled, Supreme } from '../styles';
+import { CartStyled, Supreme, CloseButton } from '../styles';
 import CartItem from './CartItem';
+import { useCart } from '../../lib/cartState';
 
 const GrandTotalStyled = styled.h3`
   margin: 0;
@@ -10,7 +11,9 @@ const GrandTotalStyled = styled.h3`
 
 export default function Cart() {
   const currentUser = useUser();
-  console.log(currentUser);
+  const currentCart = useCart();
+
+  const { cartOpen, closeCart } = currentCart;
 
   if (!currentUser) return null;
 
@@ -27,9 +30,10 @@ export default function Cart() {
   });
 
   return (
-    <CartStyled open>
+    <CartStyled open={cartOpen}>
       <header>
         <Supreme>{currentUser.name}&apos;s cart</Supreme>
+        <CloseButton type="button" onClick={closeCart}>&times;</CloseButton>
       </header>
       <ul>
         {cartItems}
