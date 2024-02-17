@@ -6,6 +6,7 @@ export { default as SignIn } from './SignIn/SignIn';
 export { default as SignUp } from './SignUp/SignUp';
 export { default as SignOut } from './SignOut/SignOut';
 export { default as Products } from './Products/Products';
+export { default as AddToCart } from './AddToCart/AddToCart';
 export { default as Pagination } from './Pagination/Pagination';
 export { default as ErrorMessage } from './ErrorMessage';
 export { default as CreateProduct } from './CreateProduct/CreateProduct';
