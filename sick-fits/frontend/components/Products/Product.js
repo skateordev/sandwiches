@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import formatMoney from '../../lib/formatMoney';
 import { ItemStyled, TitleStyled, PriceTagStyled } from '../styles';
+import AddToCart from '../AddToCart/AddToCart';
 
 export default function Product({
   product,
@@ -31,6 +32,7 @@ export default function Product({
         >
           Edit 📝
         </Link>
+        <AddToCart id={id} />
       </div>
     </ItemStyled>
   );
