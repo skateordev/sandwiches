@@ -56,6 +56,13 @@ const NavStyles = styled.ul`
       @media (max-width: 700px) {
         width: calc(100% - 10px);
       }
+
+      &.cart {
+        .splat {
+          transform: scale(120%) skew(-3deg) rotate(12deg);
+          transition: transform cubic-bezier(1,-1.22,0,2.06) 666ms;
+        }
+      }
     }
   }
   @media (max-width: 1300px) {
