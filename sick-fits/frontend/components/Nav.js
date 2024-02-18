@@ -3,6 +3,7 @@ import { NavStyled } from './styles';
 import useUser from './User/User';
 import SignOut from './SignOut/SignOut';
 import { useCart } from '../lib/cartState';
+import { Splat } from './Splat';
 
 export default function Nav() {
   const user = useUser();
@@ -12,7 +13,12 @@ export default function Nav() {
 
   return (
     <NavStyled>
-      {user && <button type="button" onClick={openCart}>Cart</button>}
+      {user && (
+        <button type="button" onClick={openCart} className="cart">
+          Cart
+          <Splat count={user.cart.reduce((tally, cartItem) => tally + cartItem.quantity, 0)} />
+        </button>
+      )}
       <Link href="/products">Products</Link>
       {user && (
         <>
