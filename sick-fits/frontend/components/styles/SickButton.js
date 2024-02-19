@@ -15,6 +15,34 @@ const SickButton = styled.button`
   &[disabled] {
     opacity: 0.5;
   }
+
+  &:hover {
+    animation:0.6s linear 0s infinite grow;
+  }
+
+  &:focus-visible {
+    animation: 1.6s cubic-bezier(1,-1.22,0,2.06) 0s infinite s🅱️innala;
+  }
+
+  @keyframes s🅱️innala {
+    from {
+      transform: rotate(1turn);
+    }
+
+    to {
+      transform: rotate(0turn);
+    }
+  }
+
+  @keyframes grow {
+    25% {
+      transform: scale(200%);
+    }
+
+    75% {
+      transform: scale(10%);
+    }
+  }
 `;
 
 export default SickButton;
