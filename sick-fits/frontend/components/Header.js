@@ -2,6 +2,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import Nav from './Nav';
 import Cart from './Cart/Cart';
+import Search from './Search/Search';
 
 const Logo = styled.h1`
   font-size: 4rem;
@@ -48,7 +49,7 @@ export default function Header() {
         <Nav />
       </div>
       <div className="sub-bar">
-        <p>&quot;Search&quot;</p>
+        <Search />
       </div>
       <Cart />
     </HeaderStyled>
