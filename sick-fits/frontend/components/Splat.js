@@ -69,7 +69,7 @@ export function Splat({ count }) {
 }
 
 Splat.propTypes = {
-  count: PropTypes.string,
+  count: PropTypes.number,
 };
 
 Splat.defaultProps = {
