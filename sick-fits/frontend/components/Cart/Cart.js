@@ -25,7 +25,7 @@ export default function Cart() {
     cartTotalCost += (item.product.price * item.quantity);
 
     return (
-      <CartItem cartItem={item} />
+      <CartItem key={item.id} cartItem={item} />
     );
   });
 
