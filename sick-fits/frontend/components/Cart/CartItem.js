@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import formatMoney from '../../lib/formatMoney';
+import RemoveFromCart from '../RemoveFromCart/RemoveFromCart';
 
 const CartItemStyled = styled.li`
   padding: 1rem 0;
@@ -38,6 +39,7 @@ export default function CartItem({ cartItem }) {
         -------------------------
         <p className="sub-total">Product total: {formatMoney(cartItem.quantity * product.price)}</p>
       </div>
+      <RemoveFromCart id={cartItem.id} />
     </CartItemStyled>
   );
 }
