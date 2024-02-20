@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/client';
 import styled from 'styled-components';
 import REMOVE_FROM_CART_MUTATION from './mutations/removeFromCartMutation';
-import CURRENT_USER_QUERY from '../User/queries/currentUserQuery';
 
 const RemoveFromCartStyled = styled.button`
   color: var(--white);
@@ -14,14 +13,26 @@ const RemoveFromCartStyled = styled.button`
   margin-right: 1rem;
 `;
 
+function updateCache(cache, payload) {
+  cache.evict(cache.identify(payload.data.deleteCartItem));
+}
+
 export default function RemoveFromCart({ id }) {
   const [removeFromCart, { loading: isLoading }] = useMutation(
     REMOVE_FROM_CART_MUTATION,
     {
+      update: updateCache,
       variables: {
         id,
       },
-      refetchQueries: [{ query: CURRENT_USER_QUERY }],
+      /* Optimistic Response is broken with
+      cache eviction for some reason */
+      // optimisticResponse: {
+      //   deleteCartItem: {
+      //     __typename: 'CartItem',
+      //     id,
+      //   },
+      // },
     },
   );
 
