@@ -17,6 +17,7 @@ const ALL_PRODUCTS_QUERY = gql`
     allProducts(
       skip: $skip
       first: $first
+      sortBy: id_DESC
     ) {
       id
       name
