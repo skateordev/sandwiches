@@ -29,7 +29,8 @@ const CartStyles = styled.div`
     padding-top: 1rem;
     padding-bottom: 1rem;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
+    white-space: nowrap;
     align-items: center;
     font-size: 3rem;
     font-weight: 900;

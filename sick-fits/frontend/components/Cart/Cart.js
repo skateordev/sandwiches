@@ -4,9 +4,40 @@ import useUser from '../User/User';
 import { CartStyled, Supreme, CloseButton } from '../styles';
 import CartItem from './CartItem';
 import { useCart } from '../../lib/cartState';
+import Checkout from '../Checkout/Checkout';
+
+const FooterStyled = styled.footer`
+  overflow: hidden;
+`;
 
 const GrandTotalStyled = styled.h3`
   margin: 0;
+  animation: 30s linear 0s infinite stonkTicker;
+
+  @keyframes stonkTicker {
+    0% {
+      transform: translate(200%);
+    }
+
+    100% {
+      transform: translate(-200%)
+    }
+  }
+`;
+
+const GrandTotalStyled2 = styled.h3`
+  margin: 0;
+  animation: 30s linear 15s infinite stonkTicker2;
+
+  @keyframes stonkTicker2 {
+    0% {
+      transform: translate(100%);
+    }
+
+    100% {
+      transform: translate(-300%)
+    }
+  }
 `;
 
 export default function Cart() {
@@ -38,9 +69,11 @@ export default function Cart() {
       <ul>
         {cartItems}
       </ul>
-      <footer>
+      <FooterStyled>
         <GrandTotalStyled>Total: {formatMoney(cartTotalCost)}</GrandTotalStyled>
-      </footer>
+        <GrandTotalStyled2>Total: {formatMoney(cartTotalCost)}</GrandTotalStyled2>
+      </FooterStyled>
+      <Checkout />
       {currentUser.email}
     </CartStyled>
   );
