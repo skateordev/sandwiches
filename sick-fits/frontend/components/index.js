@@ -5,6 +5,7 @@ export { default as Header } from './Header';
 export { default as SignIn } from './SignIn/SignIn';
 export { default as SignUp } from './SignUp/SignUp';
 export { default as SignOut } from './SignOut/SignOut';
+export { default as Checkout } from './Checkout/Checkout';
 export { default as Products } from './Products/Products';
 export { default as AddToCart } from './AddToCart/AddToCart';
 export { default as Pagination } from './Pagination/Pagination';
