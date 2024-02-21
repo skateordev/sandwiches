@@ -62,6 +62,10 @@ const GlobalStyles = createGlobalStyle`
     button {
       font-family: var(--bodyFont);
     }
+
+    button:hover {
+      cursor: pointer;
+    }
   }
 `;
 
