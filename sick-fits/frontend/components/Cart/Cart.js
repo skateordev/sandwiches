@@ -12,7 +12,13 @@ const FooterStyled = styled.footer`
 
 const GrandTotalStyled = styled.h3`
   margin: 0;
-  animation: 30s linear 0s infinite stonkTicker;
+  animation: 5s linear 5s 1 stonkHide, 30s linear 10s infinite stonkTicker;
+
+  @keyframes stonkHide {
+    100% {
+      transform: translate(-200%);
+    }
+  }
 
   @keyframes stonkTicker {
     0% {
@@ -20,22 +26,25 @@ const GrandTotalStyled = styled.h3`
     }
 
     100% {
-      transform: translate(-200%)
+      transform: translate(-200%);
     }
   }
 `;
 
 const GrandTotalStyled2 = styled.h3`
   margin: 0;
-  animation: 30s linear 15s infinite stonkTicker2;
+  animation: 30s linear 25s infinite stonkTicker2;
+  visibility: hidden;
+  color: blue;
 
   @keyframes stonkTicker2 {
     0% {
+      visibility: visible;
       transform: translate(100%);
     }
 
     100% {
-      transform: translate(-300%)
+      transform: translate(-300%);
     }
   }
 `;
@@ -70,11 +79,15 @@ export default function Cart() {
         {cartItems}
       </ul>
       <FooterStyled>
-        <GrandTotalStyled>Total: {formatMoney(cartTotalCost)}</GrandTotalStyled>
-        <GrandTotalStyled2>Total: {formatMoney(cartTotalCost)}</GrandTotalStyled2>
+        <div className="ticker">
+          <GrandTotalStyled>Total: {formatMoney(cartTotalCost)}</GrandTotalStyled>
+          <GrandTotalStyled2>Total: {formatMoney(cartTotalCost)}</GrandTotalStyled2>
+        </div>
+        <Checkout />
+        <p>
+          {currentUser.email}
+        </p>
       </FooterStyled>
-      <Checkout />
-      {currentUser.email}
     </CartStyled>
   );
 }
