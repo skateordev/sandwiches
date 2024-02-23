@@ -8,8 +8,8 @@ const SplatStyled = styled.div`
   font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums;
   line-height: 1rem;
-  margin-top: -2.5rem;
-  margin-left: -2.2rem;
+  margin-top: -2rem;
+  margin-left: -1.2rem;
   min-width: 3rem;
   padding: 0.3rem;
   transform: skew(-3deg) rotate(12deg);
@@ -33,6 +33,7 @@ const AnimationStyled = styled.span`
   .count-enter-active {
     transform: rotateX(0);
     background: chartreuse;
+    color: magenta;
   }
 
   .count-exit {
@@ -42,7 +43,8 @@ const AnimationStyled = styled.span`
   }
 
   .count-exit-active {
-    background: #f1f;
+    background: magenta;
+    color: cyan;
     transform: scale(4) rotateX(0.5turn);
   }
 `;
@@ -61,7 +63,7 @@ export function Splat({ count }) {
           classNames="count"
           unmountOnExit
         >
-          <SplatStyled className="splat">{count}</SplatStyled>
+          <SplatStyled>{count}</SplatStyled>
         </CSSTransition>
       </TransitionGroup>
     </AnimationStyled>
