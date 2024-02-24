@@ -35,7 +35,6 @@ const GrandTotalStyled2 = styled.h3`
   margin: 0;
   animation: 30s linear 25s infinite stonkTicker2;
   visibility: hidden;
-  color: blue;
 
   @keyframes stonkTicker2 {
     0% {
