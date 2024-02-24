@@ -1,4 +1,9 @@
-import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js';
+import {
+  CardElement,
+  Elements,
+  useElements,
+  useStripe,
+} from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import styled from 'styled-components';
 import { useState } from 'react';
@@ -39,14 +44,21 @@ function CheckoutForm() {
     });
 
     // 4. handle any error afrom stripe
+    if (error) {
+      setError(error);
+    }
+
     // 5. send the token from step 3 to our keystone server, via a custom mutation!
     // 6. chage the page to view the order
     // 7. close the cart
     // 8. turn the loader off
+    setIsLoading(false);
+    nProgress.done();
   };
 
   return (
     <CheckoutFormStyled onSubmit={handleSubmit}>
+      {error && <p style={{ fontSize: '0.75rem' }}>{error.message}</p>}
       <CardElement />
       <SickButton>TAKE MY MONEY</SickButton>
     </CheckoutFormStyled>
