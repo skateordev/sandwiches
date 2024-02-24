@@ -32,8 +32,6 @@ function CheckoutForm() {
     // 1. stop the form from submitting and turn the loader on
     evt.preventDefault();
 
-    console.log('tings to gdo still!');
-
     // 2. start the page transition
     nProgress.start();
 
