@@ -7,10 +7,10 @@ export const Order = list({
     user: relationship({ ref: 'User.orders' }),
     items: relationship({ ref: 'OrderItem.order', many: true }),
     label: virtual({
+      graphQLReturnType: 'String',
       resolver(item) {
         return `IM THE BEST ${formatMoney(item.total)}`;
       },
-      graphQLReturnType: 'String',
     }),
     total: integer(),
     charge: text(),

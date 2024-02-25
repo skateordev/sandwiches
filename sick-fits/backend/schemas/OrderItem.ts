@@ -10,13 +10,13 @@ export const OrderItem = list({
       },
     }),
     photo: relationship({
+      ref: 'ProductImage',
       ui: {
         displayMode: 'cards',
         cardFields: ['image', 'altText'],
         inlineEdit: { fields: ['image', 'altText'] },
         inlineCreate: { fields: ['image', 'altText'] },
       },
-      ref: 'ProductImage',
     }),
     order: relationship({ ref: 'Order.items' }),
     price: integer(),
