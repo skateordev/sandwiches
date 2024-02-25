@@ -15,7 +15,8 @@ export const User = list({
       many: true, // can have multiple items in cart
     }),
     email: text({ isRequired: true, isUnique: true }),
+    orders: relationship({ ref: 'Order.user', many: true }),
     password: password(),
-    // TODO: add roles, carts and orders
+    // TODO: add roles
   },
 });
