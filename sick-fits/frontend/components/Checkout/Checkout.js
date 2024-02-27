@@ -9,8 +9,10 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import nProgress from 'nprogress';
 import { useMutation } from '@apollo/client';
+import { useRouter } from 'next/router';
 import { SickButton } from '../styles';
 import CREATE_ORDER_MUTATION from './mutations/createOrderMutation';
+import { useCart } from '../../lib/cartState';
 
 const CheckoutFormStyled = styled.form`
   box-shadow: 0 1px 2px 2px rgba(0,0,0,0.04);
@@ -24,8 +26,10 @@ const CheckoutFormStyled = styled.form`
 const stripeLib = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 function CheckoutForm() {
+  const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
+  const closeCart = useCart();
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [checkout, { error: graphQLError }] = useMutation(CREATE_ORDER_MUTATION);
@@ -63,8 +67,13 @@ function CheckoutForm() {
     console.log(order);
 
     // 6. chage the page to view the order
+    router.push({
+      pathname: '/order',
+      query: { id: order.data.checkout.id },
+    });
 
     // 7. close the cart
+    closeCart();
 
     // 8. turn the loader off
     setIsLoading(false);
