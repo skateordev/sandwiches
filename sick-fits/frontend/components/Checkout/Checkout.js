@@ -13,6 +13,7 @@ import { useRouter } from 'next/router';
 import { SickButton } from '../styles';
 import CREATE_ORDER_MUTATION from './mutations/createOrderMutation';
 import { useCart } from '../../lib/cartState';
+import CURRENT_USER_QUERY from '../User/queries/currentUserQuery';
 
 const CheckoutFormStyled = styled.form`
   box-shadow: 0 1px 2px 2px rgba(0,0,0,0.04);
@@ -32,7 +33,9 @@ function CheckoutForm() {
   const closeCart = useCart();
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const [checkout, { error: graphQLError }] = useMutation(CREATE_ORDER_MUTATION);
+  const [checkout, { error: graphQLError }] = useMutation(CREATE_ORDER_MUTATION, {
+    refetchQueries: [{ query: CURRENT_USER_QUERY }],
+  });
 
   const handleSubmit = async (evt) => {
     // 1. stop the form from submitting and turn the loader on
