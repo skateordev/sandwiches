@@ -11,12 +11,18 @@ export default function Nav() {
 
   const { openCart } = currentCart;
 
+  const totalCartItems = user.cart.reduce((tally, cartItem) => {
+    const quantity = cartItem.product ? cartItem.quantity : 0;
+
+    return tally + quantity;
+  }, 0);
+
   return (
     <NavStyled>
       {user && (
         <button type="button" onClick={openCart} className="cart">
           Cart
-          <Splat count={user.cart.reduce((tally, cartItem) => tally + cartItem.quantity, 0)} />
+          <Splat count={totalCartItems} />
         </button>
       )}
       <Link href="/products">Products</Link>
