@@ -74,7 +74,7 @@ function CheckoutForm() {
   return (
     <CheckoutFormStyled onSubmit={handleSubmit}>
       {error && <p style={{ fontSize: '0.75rem' }}>{error.message}</p>}
-      {error && <p style={{ fontSize: '0.75rem' }}>{graphQLError.message}</p>}
+      {error && <p style={{ fontSize: '0.75rem' }}>{graphQLError?.message}</p>}
       <CardElement />
       <SickButton>TAKE MY MONEY</SickButton>
     </CheckoutFormStyled>
