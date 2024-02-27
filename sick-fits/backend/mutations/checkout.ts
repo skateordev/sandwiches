@@ -52,13 +52,16 @@ async function checkout(
     `,
   });
 
-  // spit out a large object without truncating
+  /* spit out a large object without truncating by using console.dir
+     and specifying `{ depth: null }` */
   console.dir(user, { depth: null });
 
   // 2. calculate the total price for their order
-  const cartItems = user.cart.filter((cartItem) => cartItem.product);
+  /* filter out any cart items that do not have a product association
+     i.e. product was in-cart and then deleted from the store/no longer available */
+  const filteredCartItems = user.cart.filter((cartItem) => cartItem.product);
 
-  const amount = cartItems.reduce(function (tally: number, cartItem: CartItemCreateInput) {
+  const amount = filteredCartItems.reduce(function (tally: number, cartItem: CartItemCreateInput) {
     return tally + cartItem.quantity * cartItem.product.price;
   }, 0);
   console.log({ amount });
@@ -78,7 +81,7 @@ async function checkout(
   console.log(charge);
 
   // 4. convert the CartItems to OrderItems
-  const orderItems = cartItems.map((cartItem) => {
+  const orderItems = filteredCartItems.map((cartItem) => {
     const { product, quantity } = cartItem;
     const { name, photo, price, description } = product;
 
@@ -104,7 +107,11 @@ async function checkout(
   })
 
   // 6. cleanup old cart items
-  const cartItemIds = cartItems.map(cartItem => cartItem.id);
+  /* we need to make sure that ALL old cart items are cleaned up,
+     including products that have been deleted from the store and
+     are not "visible" in the cart, therefore use `user.cart` instead
+     of `filteredCartItems` */
+  const cartItemIds = user.cart.map(cartItem => cartItem.id);
   await context.lists.CartItem.deleteMany({
     ids: cartItemIds,
   });
