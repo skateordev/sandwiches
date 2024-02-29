@@ -3,17 +3,22 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useQuery } from '@apollo/client';
 import { PaginationStylee } from '../styles';
-import PAGINATION_QUERY from './queries/paginationQuery';
 import ErrorMessage from '../ErrorMessage';
 import { ITEMS_PER_PAGE } from '../constants';
+import capitalize from '../../lib/capitalize';
+import itemCountByType from '../../lib/itemCountByType';
 
-export default function Pagination({ currentPage }) {
-  const { data, error, loading: isLoading } = useQuery(PAGINATION_QUERY);
+export default function Pagination({
+  itemType,
+  currentPage,
+  paginationQuery,
+}) {
+  const { data, error, loading: isLoading } = useQuery(paginationQuery);
   if (isLoading) return 'Loading...💦';
   if (error) return <ErrorMessage error={error} />;
 
-  const { count: productCount } = data._allProductsMeta;
-  const pageCount = Math.ceil(productCount / ITEMS_PER_PAGE);
+  const count = itemCountByType(data, itemType);
+  const pageCount = Math.ceil(count / ITEMS_PER_PAGE);
 
   return (
     <PaginationStylee>
@@ -21,12 +26,12 @@ export default function Pagination({ currentPage }) {
       <Head>
         <title>SECK FETZ - Page {currentPage} of {pageCount}</title>
       </Head>
-      <Link href={`/products/${currentPage - 1}`} passHref>
+      <Link href={`/${itemType}/${currentPage - 1}`} passHref>
         <a href="passedHref" aria-disabled={currentPage <= 1}>👈 Prev</a>
       </Link>
       <p>Page {currentPage} of {pageCount}</p>
-      <p>{productCount} Items Total</p>
-      <Link href={`/products/${currentPage + 1}`} passHref>
+      <p>{count} {itemType > 1 ? `${capitalize(itemType)}s` : capitalize(itemType)} Total</p>
+      <Link href={`/${itemType}/${currentPage + 1}`} passHref>
         <a href="passedHref" aria-disabled={currentPage >= pageCount}>Next 👉</a>
       </Link>
       {/* eslint-enable react/jsx-one-expression-per-line */}
@@ -35,7 +40,10 @@ export default function Pagination({ currentPage }) {
 }
 
 Pagination.propTypes = {
+  itemType: PropTypes.string.isRequired,
   currentPage: PropTypes.number,
+  // eslint-disable-next-line react/forbid-prop-types
+  paginationQuery: PropTypes.object.isRequired,
 };
 
 Pagination.defaultProps = {
