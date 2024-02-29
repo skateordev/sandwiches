@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useQuery } from '@apollo/client';
-import { PaginationStyled } from '../styles';
+import { PaginationStylee } from '../styles';
 import PAGINATION_QUERY from './queries/paginationQuery';
 import ErrorMessage from '../ErrorMessage';
 import { ITEMS_PER_PAGE } from '../constants';
@@ -16,7 +16,7 @@ export default function Pagination({ currentPage }) {
   const pageCount = Math.ceil(productCount / ITEMS_PER_PAGE);
 
   return (
-    <PaginationStyled>
+    <PaginationStylee>
       {/* eslint-disable react/jsx-one-expression-per-line */}
       <Head>
         <title>SECK FETZ - Page {currentPage} of {pageCount}</title>
@@ -30,7 +30,7 @@ export default function Pagination({ currentPage }) {
         <a href="passedHref" aria-disabled={currentPage >= pageCount}>Next 👉</a>
       </Link>
       {/* eslint-enable react/jsx-one-expression-per-line */}
-    </PaginationStyled>
+    </PaginationStylee>
   );
 }
 
