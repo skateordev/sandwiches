@@ -1,4 +1,4 @@
-import { ITEM_TYPE_ORDERS, ITEM_TYPE_PRODUCTS } from '../components/constants';
+import itemCountByType from './itemCountByType';
 
 export default function paginationField(query, itemType) {
   return ({
@@ -14,19 +14,7 @@ export default function paginationField(query, itemType) {
 
       // read number of items on the page from cache
       const data = cache.readQuery({ query });
-      let count = 0;
-
-      // determine what we're paginating
-      switch (itemType) {
-        case ITEM_TYPE_ORDERS:
-          count = data?._allOrdersMeta?.count;
-          break;
-        case ITEM_TYPE_PRODUCTS:
-          count = data?._allProductsMeta?.count;
-          break;
-        default:
-          break;
-      }
+      const count = itemCountByType(data, itemType);
 
       // current page number and total number of pages
       const page = skip / first + 1;
