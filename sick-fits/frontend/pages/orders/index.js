@@ -4,11 +4,6 @@ import { Orders, Pagination } from '../../components';
 
 const OrdersPageStylee = styled.div`
   display: grid;
-  align-items: center;
-
-  > div {
-    margin: 16px auto;
-  }
 `;
 
 export default function OrdersPage() {
