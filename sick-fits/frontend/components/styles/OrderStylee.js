@@ -8,30 +8,26 @@ const OrderStylee = styled.div`
   padding: 2rem;
   border-top: 10px solid red;
 
-  & > p {
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-    margin: 0;
-    border-bottom: 1px solid var(--offWhite);
+  .order-meta {
+    p {
+      display: grid;
+      grid-template-columns: 1fr 5fr;
+      margin: 0;
+      border-bottom: 1px solid var(--offWhite);
 
-    span {
-      padding: 1rem;
+      span {
+        padding: 1rem;
 
-      &:first-child {
-        font-weight: 900;
-        text-align: right;
+        &:first-child {
+          font-weight: 900;
+          text-align: right;
+        }
+      }
+
+      :nth-child(odd) {
+        background-color: var(--offWhite);
       }
     }
-  }
-
-  .order-item {
-    border-bottom: 1px solid var(--offWhite);
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    align-items: center;
-    grid-gap: 2rem;
-    margin: 2rem 0;
-    padding-bottom: 2rem;
   }
 `;
 

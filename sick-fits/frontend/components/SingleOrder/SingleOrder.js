@@ -25,7 +25,7 @@ export default function SingleOrder({ id }) {
   } = data.Order;
 
   const orderDetails = useMemo(() => (
-    <>
+    <div className="order-meta">
       <p>
         <span>Order Id: </span>
         <span>{orderId}</span>
@@ -42,7 +42,7 @@ export default function SingleOrder({ id }) {
         <span>Item count: </span>
         <span>{items.reduce((tally, { quantity }) => tally + quantity, 0)}</span>
       </p>
-    </>
+    </div>
   ), []);
 
   const orderItems = items.map((item) => {
