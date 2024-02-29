@@ -1,6 +1,6 @@
-import PAGINATION_QUERY from '../components/Pagination/queries/paginationQuery';
+import { ITEM_TYPE_ORDERS, ITEM_TYPE_PRODUCTS } from '../components/constants';
 
-export default function paginationField() {
+export default function paginationField(query, itemType) {
   return ({
     keyArgs: false, // tells apollo we will take care of everything
     read: (existing = [], { args, cache }) => { // eslint-disable-line default-param-last
@@ -13,8 +13,20 @@ export default function paginationField() {
       const { skip, first } = args;
 
       // read number of items on the page from cache
-      const data = cache.readQuery({ query: PAGINATION_QUERY });
-      const count = data?._allProductsMeta?.count; // eslint-disable-line no-underscore-dangle
+      const data = cache.readQuery({ query });
+      let count = 0;
+
+      // determine what we're paginating
+      switch (itemType) {
+        case ITEM_TYPE_ORDERS:
+          count = data?._allOrdersMeta?.count;
+          break;
+        case ITEM_TYPE_PRODUCTS:
+          count = data?._allProductsMeta?.count;
+          break;
+        default:
+          break;
+      }
 
       // current page number and total number of pages
       const page = skip / first + 1;
