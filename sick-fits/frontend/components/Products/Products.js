@@ -31,17 +31,15 @@ export default function Products({ currentPage }) {
   }
 
   return (
-    <div>
-      <ProductsListStyled>
-        {data.allProducts.map((product) => {
-          const { id } = product;
+    <ProductsListStyled>
+      {data.allProducts.map((product) => {
+        const { id } = product;
 
-          return (
-            <Product key={id} product={product} />
-          );
-        })}
-      </ProductsListStyled>
-    </div>
+        return (
+          <Product key={id} product={product} />
+        );
+      })}
+    </ProductsListStyled>
   );
 }
 
