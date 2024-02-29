@@ -8,7 +8,7 @@ import { ITEMS_PER_PAGE } from '../constants';
 const OrdersListStylee = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 60px;
+  grid-gap: 20px;
 `;
 
 export default function Orders({ currentPage }) {
