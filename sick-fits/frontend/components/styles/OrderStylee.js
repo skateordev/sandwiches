@@ -27,6 +27,15 @@ const OrderStylee = styled.div`
       :nth-child(odd) {
         background-color: var(--offWhite);
       }
+
+      .linked {
+        text-decoration: underline;
+        width: fit-content;
+
+        :hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 `;
