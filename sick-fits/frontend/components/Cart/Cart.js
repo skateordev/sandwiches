@@ -8,6 +8,12 @@ import Checkout from '../Checkout/Checkout';
 
 const FooterStyled = styled.footer`
   overflow: hidden;
+
+  p {
+    font-size: 1rem;
+    font-weight: 300;
+    padding-top: 16px;
+  }
 `;
 
 const GrandTotalStyled = styled.h3`
@@ -31,12 +37,12 @@ const GrandTotalStyled = styled.h3`
   }
 `;
 
-const GrandTotalStyled2 = styled.h3`
+const GrandTotalOffsetStyled = styled.h3`
   margin: 0;
-  animation: 30s linear 25s infinite stonkTicker2;
+  animation: 30s linear 25s infinite stonkTickerOffset;
   visibility: hidden;
 
-  @keyframes stonkTicker2 {
+  @keyframes stonkTickerOffset {
     0% {
       visibility: visible;
       transform: translate(100%);
@@ -80,7 +86,7 @@ export default function Cart() {
       <FooterStyled>
         <div className="ticker">
           <GrandTotalStyled>Total: {formatMoney(cartTotalCost)}</GrandTotalStyled>
-          <GrandTotalStyled2>Total: {formatMoney(cartTotalCost)}</GrandTotalStyled2>
+          <GrandTotalOffsetStyled>Total: {formatMoney(cartTotalCost)}</GrandTotalOffsetStyled>
         </div>
         <Checkout />
         <p>
