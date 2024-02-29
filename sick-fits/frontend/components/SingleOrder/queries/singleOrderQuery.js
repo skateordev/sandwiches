@@ -7,6 +7,7 @@ const SINGLE_ORDER_QUERY = gql`
     }) {
       id
       total
+      charge
       items {
         id
         name
