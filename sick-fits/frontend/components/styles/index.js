@@ -11,4 +11,4 @@ export { default as TitleStyled } from './Title';
 export { default as GlobalStyles } from './GlobalStyles';
 export { default as PriceTagStyled } from './PriceTag';
 export { default as OrderItemStylee } from './OrderItemStylee';
-export { default as PaginationStyled } from './PaginationStyles';
+export { default as PaginationStylee } from './PaginationStylee';
