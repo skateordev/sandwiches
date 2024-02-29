@@ -9,6 +9,7 @@ export { default as Checkout } from './Checkout/Checkout';
 export { default as Products } from './Products/Products';
 export { default as AddToCart } from './AddToCart/AddToCart';
 export { default as Pagination } from './Pagination/Pagination';
+export { default as SingleOrder } from './SingleOrder/SingleOrder';
 export { default as ErrorMessage } from './ErrorMessage';
 export { default as CreateProduct } from './CreateProduct/CreateProduct';
 export { default as DeleteProduct } from './DeleteProduct/DeleteProduct';
