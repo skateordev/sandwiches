@@ -1,7 +1,7 @@
 export default function formatMoney(amount = 0) {
   const options = {
     style: 'currency',
-    currency: 'USD',
+    currency: 'EUR',
     minimumFractionDigits: 2,
   };
 
@@ -10,7 +10,8 @@ export default function formatMoney(amount = 0) {
     options.minimumFractionDigits = 0;
   }
 
-  const formatter = Intl.NumberFormat('en-US', options);
+  // english-Eurozone (countries that fully support the euro)
+  const formatter = Intl.NumberFormat('en-EZ', options);
 
   return formatter.format(amount / 100);
 }
