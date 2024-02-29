@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import Head from 'next/head';
-import { useMemo } from 'react';
 import SINGLE_ORDER_QUERY from './queries/singleOrderQuery';
 import ErrorMessage from '../ErrorMessage';
 import formatMoney from '../../lib/formatMoney';
