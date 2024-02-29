@@ -1,6 +1,9 @@
 const ITEMS_PER_PAGE = 4;
+const ITEM_GROUP_ORDERS = 'orders';
+const ITEM_GROUP_PRODUCTS = 'products';
 
 export {
-  // eslint-disable-next-line import/prefer-default-export
   ITEMS_PER_PAGE,
+  ITEM_GROUP_ORDERS,
+  ITEM_GROUP_PRODUCTS,
 };
