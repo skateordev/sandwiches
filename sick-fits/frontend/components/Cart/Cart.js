@@ -12,9 +12,9 @@ const FooterStyled = styled.footer`
 
 const GrandTotalStyled = styled.h3`
   margin: 0;
-  animation: 5s linear 5s 1 stonkHide, 30s linear 10s infinite stonkTicker;
+  animation: 5s linear 5s 1 stonkStart, 30s linear 10s infinite stonkTicker;
 
-  @keyframes stonkHide {
+  @keyframes stonkStart {
     100% {
       transform: translate(-200%);
     }

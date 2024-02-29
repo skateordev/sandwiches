@@ -36,11 +36,10 @@ export default function Order({
   } = order;
 
   const orderImages = items.map((item) => (
-    <div className="picture-frame">
+    <div key={item.id} className="picture-frame">
       <img
-        key={item.id}
         src={item?.photo?.image?.publicUrlTransformed}
-        alt={item.photo.altText}
+        alt={item.photo?.altText}
       />
     </div>
   ));
