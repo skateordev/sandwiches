@@ -30,7 +30,7 @@ function CheckoutForm() {
   const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
-  const closeCart = useCart();
+  const { closeCart } = useCart();
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [checkout, { error: graphQLError }] = useMutation(CREATE_ORDER_MUTATION, {
@@ -86,9 +86,18 @@ function CheckoutForm() {
   return (
     <CheckoutFormStyled onSubmit={handleSubmit}>
       {error && <p style={{ fontSize: '0.75rem' }}>{error.message}</p>}
-      {error && <p style={{ fontSize: '0.75rem' }}>{graphQLError?.message}</p>}
+      {graphQLError && <p style={{ fontSize: '0.75rem' }}>{graphQLError.message}</p>}
       <CardElement />
-      <SickButton>TAKE MY MONEY</SickButton>
+      <SickButton
+        disabled={
+          isLoading
+          || error?.message
+          || graphQLError?.message
+        }
+        aria-disabled={isLoading}
+      >
+        TAKE MY MONEY
+      </SickButton>
     </CheckoutFormStyled>
   );
 }
