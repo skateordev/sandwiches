@@ -11,7 +11,7 @@ export default function Nav() {
 
   const { openCart } = currentCart;
 
-  const totalCartItems = user.cart.reduce((tally, cartItem) => {
+  const totalCartItems = user?.cart?.reduce((tally, cartItem) => {
     const quantity = cartItem.product ? cartItem.quantity : 0;
 
     return tally + quantity;
