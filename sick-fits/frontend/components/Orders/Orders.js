@@ -31,17 +31,15 @@ export default function Orders({ currentPage }) {
   }
 
   return (
-    <div>
-      <OrdersListStylee>
-        {data.allOrders.map((order) => {
-          const { id } = order;
+    <OrdersListStylee>
+      {data.allOrders.map((order) => {
+        const { id } = order;
 
-          return (
-            <Order key={id} order={order} />
-          );
-        })}
-      </OrdersListStylee>
-    </div>
+        return (
+          <Order key={id} order={order} />
+        );
+      })}
+    </OrdersListStylee>
   );
 }
 
