@@ -5,6 +5,7 @@ import {
   withItemData,
   statelessSessions,
 } from '@keystone-next/keystone/session';
+import { Role } from './schemas/Role';
 import { User } from './schemas/User';
 import { Order } from './schemas/Order';
 import { Product } from './schemas/Product';
@@ -12,8 +13,9 @@ import { CartItem } from './schemas/CartItem';
 import { OrderItem } from './schemas/OrderItem';
 import { ProductImage } from './schemas/ProductImage';
 import { insertSeedData } from './seed-data';
-import { sendPasswordResetEmail } from './lib/mail';
+import { permissionsList } from './schemas/fields';
 import { extendGraphqlSchema } from './mutations';
+import { sendPasswordResetEmail } from './lib/mail';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial';
@@ -63,6 +65,7 @@ export default withAuth(
     extendGraphqlSchema,
     lists: createSchema({
       // Schema items go here
+      Role,
       User,
       Order,
       Product,
@@ -78,7 +81,7 @@ export default withAuth(
     // TODO: add session values here
     session: withItemData(statelessSessions(sessionConfig), {
       // GraphQL query
-      User: 'id name email',
+      User: `id name email role { ${permissionsList.join(' ')} }`,
     }),
   })
 );
