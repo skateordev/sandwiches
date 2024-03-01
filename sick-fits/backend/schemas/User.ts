@@ -17,6 +17,13 @@ export const User = list({
       ref: 'CartItem.user', // 2-way relationship connection
       many: true, // can have multiple items in cart
     }),
-    // TODO: add roles
+    role: relationship({
+      ref: 'Role.assignedTo',
+      // TODO: add Access Cuntroll
+    }),
+    products: relationship({
+      ref: 'Product.user',
+      many: true,
+    }),
   },
 });
