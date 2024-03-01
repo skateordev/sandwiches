@@ -31,15 +31,58 @@ const permissions = {
    rules can return a boolean or a filter which
    limits which products they can CRUD */
 const rules = {
+  canReadProducts({ session }: ListAccessArgs) {
+    // 1. Perms check for canReadProducts
+    if (permissions.canReadProducts({ session })) {
+      return true; // they can read all the things!
+    }
+
+    /* they should only see available products (based on the
+       product status field) */
+    return { status: 'AVAILABLE' }
+  },
   canManageProducts({ session }: ListAccessArgs) {
+    // Are they signed in?
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+
     // 1. do they have the canMenageProducts permission?
     if (permissions.canManageProducts({ session })) {
       return true;
     }
 
-    // 2. do they OWN the item?
+    // 2. otherwise, do they OWN the item (did they create it)?
     return { user: { id: session.itemId } };
-  }
+  },
+  canOrder({ session }: ListAccessArgs) {
+    // Are they signed in?
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+
+    // Do they have permission of canManageCart
+    if (permissions.canManageCart({ session })) {
+      return true;
+    }
+
+    // 2. otherwise, do they OWN the item (did they create it)?
+    return { user: { id: session.itemId } }
+  },
+  canManageOrderItems({ session }: ListAccessArgs) {
+    // Are they signed in?
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+
+    // Do they have permission of canManageCart
+    if (permissions.canManageCart({ session })) {
+      return true;
+    }
+
+    // 2. otherwise, do they OWN the item (did they create it)?
+    return { order: { user: { id: session.itemId } } }
+  },
 };
 
 export {
