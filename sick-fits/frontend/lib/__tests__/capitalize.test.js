@@ -11,6 +11,7 @@ describe('capitalize tests', () => {
   });
 
   it('returns null if no string is passed in', () => {
+    expect(capitalize(undefined)).toBeNull();
     expect(capitalize()).toBeNull();
   });
 });
