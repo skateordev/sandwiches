@@ -15,16 +15,16 @@ const generatedPermissions = Object.fromEntries(
     function ({ session }: ListAccessArgs) {
       return !!session?.data.role?.[permission];
     },
-  ],
-  ));
+  ])
+);
 
 // Permissions check if someone meets a criteria: yes | no
 const permissions = {
   ...generatedPermissions,
   // example of adding a custom perm:
-  isAwesome({ session }: ListAccessArgs) {
-    return session?.data.name.includes('sicko');
-  },
+  // isAwesome: ({ session }: ListAccessArgs) => {
+  //   return session?.data.name.includes('sicko');
+  // },
 };
 
 /* Rules based function
