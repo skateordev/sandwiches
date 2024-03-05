@@ -1,5 +1,5 @@
 import casual from 'casual'; // eslint-disable-line import/no-extraneous-dependencies
-import PAGINATION_QUERY from '../components/Pagination/queries/paginationQuery';
+import PRODUCTS_PAGINATION_QUERY from '../components/Products/queries/productsPaginationQuery';
 
 // seed it so we get consistent results
 casual.seed(777);
@@ -88,7 +88,7 @@ class LocalStorageMock {
 function makePaginationMocksFor(length) {
   return [
     {
-      request: { query: PAGINATION_QUERY },
+      request: { query: PRODUCTS_PAGINATION_QUERY },
       result: {
         data: {
           _allProductsMeta: {
