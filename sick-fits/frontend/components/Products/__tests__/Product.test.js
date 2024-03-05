@@ -9,7 +9,7 @@ const product = fakeItem();
 
 describe('<Product />', () => {
   it('matches the default snapshot', () => {
-    const { container, debug } = render(
+    const { container } = render(
       <CartStateProvider>
         <MockedProvider>
           <Product product={product} />
@@ -17,7 +17,6 @@ describe('<Product />', () => {
       </CartStateProvider>,
     );
 
-    debug();
     expect(container).toMatchSnapshot();
   });
 });
