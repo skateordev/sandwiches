@@ -12,15 +12,16 @@ const AddToCartStyled = styled.button`
   }
 `;
 
-export default function AddToCart({ id }) {
+export default function AddToCart({ productId }) {
   const [addToCart, { loading: isLoading }] = useMutation(ADD_TO_CART_MUTATION, {
-    variables: { productId: id },
+    variables: { productId },
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
   const { openCart } = useCart();
 
   const handleClick = () => {
+    // console.log(addToCart());
     openCart();
     addToCart();
   };
@@ -38,5 +39,5 @@ export default function AddToCart({ id }) {
 }
 
 AddToCart.propTypes = {
-  id: PropTypes.string.isRequired,
+  productId: PropTypes.string.isRequired,
 };
