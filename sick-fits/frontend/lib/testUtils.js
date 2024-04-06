@@ -5,7 +5,7 @@ import PRODUCTS_PAGINATION_QUERY from '../components/Products/queries/productsPa
 casual.seed(777);
 
 const fakeItem = () => ({
-  // __typename: 'Item',
+  __typename: 'Item',
   id: 'abc123',
   price: 5000,
   user: null,

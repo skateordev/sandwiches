@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddToCart /> matches the default snapshot 1`] = `
+<div>
+  <button
+    aria-busy="false"
+    class="AddToCart__AddToCartStyled-sc-6bl65o-0 fHiDfE"
+    type="button"
+  >
+    Add
+     to cart 🛒
+  </button>
+</div>
+`;
