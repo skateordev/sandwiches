@@ -1,6 +1,6 @@
 export { default as Supreme } from './Supreme';
 export { default as NavStyled } from './NavStyles';
-export { default as CartStyled } from './CartStyles';
+export { default as CartStyled } from './CartStyled';
 export { default as FormStyled } from './Form';
 export { default as ItemStyled } from './ItemStyles';
 export { default as SickButton } from './SickButton';

@@ -8,7 +8,7 @@ export default function Product({
   product,
 }) {
   const {
-    id,
+    id: productId,
     name,
     photo,
     price,
@@ -19,7 +19,7 @@ export default function Product({
     <ItemStyled>
       <img src={photo?.image?.publicUrlTransformed} alt={name} />
       <TitleStyled>
-        <Link href={`/product/${id}`}>{name}</Link>
+        <Link href={`/product/${productId}`}>{name}</Link>
       </TitleStyled>
       <PriceTagStyled>{formatMoney(price)}</PriceTagStyled>
       <p>{description}</p>
@@ -27,12 +27,12 @@ export default function Product({
       <div className="buttonList">
         <Link href={{
           pathname: '/update',
-          query: { id },
+          query: { id: productId },
         }}
         >
           Edit 📝
         </Link>
-        <AddToCart id={id} />
+        <AddToCart productId={productId} />
       </div>
     </ItemStyled>
   );
